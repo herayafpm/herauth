@@ -207,7 +207,7 @@
                     "data": "id",
                 },
                 {
-                    "data": "nama",
+                    "data": "name",
                 },
                 {
                     "data": "expired",

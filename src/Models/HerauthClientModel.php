@@ -14,7 +14,7 @@ class HerauthClientModel extends BaseHerauthModel
     protected $returnType           = HerauthClientEntity::class;
     protected $useSoftDeletes        = true;
     protected $protectFields        = true;
-    protected $allowedFields        = ['client_key', 'nama', 'expired', 'hit_limit', 'deleted_at'];
+    protected $allowedFields        = ['client_key', 'name', 'expired', 'hit_limit', 'deleted_at'];
 
     // Dates
     protected $useTimestamps        = true;
@@ -69,7 +69,7 @@ class HerauthClientModel extends BaseHerauthModel
     public function regenerate_key($id)
     {
         $client = $this->withDeleted(true)->find($id);
-        return $this->update($id, ['nama' => $client->nama]);
+        return $this->update($id, ['name' => $client->name]);
     }
 
     public function setLimit($id, $jenis = '-', $val = 1)

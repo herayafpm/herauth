@@ -39,13 +39,13 @@ class HerauthAccountGroupModel extends BaseHerauthModel
     protected $beforeDelete         = [];
     protected $afterDelete          = [];
 
-    public function findGroupByName($nama)
+    public function findGroupByName($name)
     {
-        return $this->where(['nama' => $nama])->first();
+        return $this->where(['name' => $name])->first();
     }
 
     public function getGroupsForAccount($account_id)
     {
-        return $this->select("{$this->table}.*,group.nama")->join("herauth_group group", "{$this->table}.group_id = group.id", "LEFT")->where(["{$this->table}.account_id" => $account_id])->findAll();
+        return $this->select("{$this->table}.*,group.name")->join("herauth_group group", "{$this->table}.group_id = group.id", "LEFT")->where(["{$this->table}.account_id" => $account_id])->findAll();
     }
 }

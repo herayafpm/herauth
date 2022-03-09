@@ -41,7 +41,7 @@ class HeraAccount extends BaseHerauthMasterController
             throw new PageNotFoundException();
         }
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.account")." " . $account->profil->nama,
+            'page_title' => lang("Web.edit")." ".lang("Web.master.account")." " . $account->profil->name,
             'account' => $account,
             'url_edit' => herauth_web_url($this->root_view . "account/edit/".$id),
         ];
@@ -56,7 +56,7 @@ class HeraAccount extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.group")." ".lang("Web.master.account")." " . $account->profil->nama,
+            'page_title' => lang("Web.master.group")." ".lang("Web.master.account")." " . $account->profil->name,
             'account' => $account,
             'url_save' => herauth_web_url($this->root_view . "account/save_group/".$id),
             'url_groups' => herauth_web_url($this->root_view . "group"),

@@ -13,7 +13,7 @@ class HerauthPermissionModel extends BaseHerauthModel
     protected $returnType           = HerauthPermissionEntity::class;
     protected $useSoftDeletes       = true;
     protected $protectFields        = true;
-    protected $allowedFields        = ['nama', 'deskripsi','must_login','deleted_at'];
+    protected $allowedFields        = ['name', 'description','must_login','deleted_at'];
 
     // Dates
     protected $useTimestamps        = true;
@@ -39,8 +39,8 @@ class HerauthPermissionModel extends BaseHerauthModel
     protected $beforeDelete         = [];
     protected $afterDelete          = [];
 
-    public function findPermissionByName($nama)
+    public function findPermissionByName($name)
     {
-        return $this->where(['nama' => $nama])->first();
+        return $this->where(['name' => $name])->first();
     }
 }

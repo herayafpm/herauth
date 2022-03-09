@@ -27,7 +27,7 @@ return [
     'tooManyAttemptRequest' => 'Terlalu banyak permintaan, tunggu 1 menit.',
     'validation' => [
         'master' => [
-            'nama' => 'Nama {0}'
+            'name' => 'Nama {0}'
         ],
     ],
     'account' => [

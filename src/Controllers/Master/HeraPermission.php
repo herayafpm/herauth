@@ -41,7 +41,7 @@ class HeraPermission extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.permission")." " . $permission->nama,
+            'page_title' => lang("Web.edit")." ".lang("Web.master.permission")." " . $permission->name,
             'permission' => $permission,
             'url_edit' => herauth_web_url($this->root_view . "permission/edit/".$id),
         ];

@@ -25,9 +25,9 @@ class HeraGroup extends BaseHerauthAuthResourceApi
             $offset = (int) $data['offset'];
         }
         if ($limit > 0) {
-            $groups = $this->model->select("id,nama,deskripsi")->findAll($limit, $offset);
+            $groups = $this->model->select("id,name,description")->findAll($limit, $offset);
         } else {
-            $groups = $this->model->select("id,nama,deskripsi")->findAll();
+            $groups = $this->model->select("id,name,description")->findAll();
         }
         return $this->respond(["status" => true, "message" => lang("Api.successRetrieveRequest", [lang("Web.master.group")]), "data" => $groups], 200);
     }
@@ -36,7 +36,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
         herauth_grant("group.post_datatable");
         $data = $this->getDataRequest();
         $like = [
-            'nama' => $data['search']['value'] ?? ''
+            'name' => $data['search']['value'] ?? ''
         ];
         $this->request->message_after = lang("Api.successRetrieveRequest", [lang("Web.master.group")]);
         return $this->respond($this->datatable_get(['withDeleted' => true, 'like' => $like]), 200);
@@ -47,9 +47,9 @@ class HeraGroup extends BaseHerauthAuthResourceApi
         herauth_grant("group.post_add");
         $data = $this->getDataRequest();
         $rules = [
-            'nama' => [
-                'label'  => lang("Api.validation.master.nama", [lang("Web.master.group")]),
-                'rules'  => "required|is_unique[herauth_group.nama]",
+            'name' => [
+                'label'  => lang("Api.validation.master.name", [lang("Web.master.group")]),
+                'rules'  => "required|is_unique[herauth_group.name]",
                 'errors' => []
             ]
         ];
@@ -58,8 +58,8 @@ class HeraGroup extends BaseHerauthAuthResourceApi
             return $this->response->setStatusCode(400)->setJSON(["status" => false, "message" => lang("Validation.errorValidation"), "data" => $this->validator->getErrors()]);
         }
         $insertData = [
-            'nama' => $data['nama'],
-            'deskripsi' => $data['deskripsi'] ?? '',
+            'name' => $data['name'],
+            'description' => $data['description'] ?? '',
         ];
 
         if ($this->model->save($insertData)) {
@@ -77,9 +77,9 @@ class HeraGroup extends BaseHerauthAuthResourceApi
         }
         $data = $this->getDataRequest();
         $rules = [
-            'nama' => [
-                'label'  => lang("Api.validation.master.nama", [lang("Web.master.group")]),
-                'rules'  => "required|is_unique[herauth_group.nama,id,{$id}]",
+            'name' => [
+                'label'  => lang("Api.validation.master.name", [lang("Web.master.group")]),
+                'rules'  => "required|is_unique[herauth_group.name,id,{$id}]",
                 'errors' => []
             ]
         ];
@@ -88,8 +88,8 @@ class HeraGroup extends BaseHerauthAuthResourceApi
             return $this->response->setStatusCode(400)->setJSON(["status" => false, "message" => lang("Validation.errorValidation"), "data" => $this->validator->getErrors()]);
         }
         $update_data = [
-            'nama' => $data['nama'],
-            'deskripsi' => $data['deskripsi'] ?? '',
+            'name' => $data['name'],
+            'description' => $data['description'] ?? '',
         ];
 
         if ($this->model->update($id, $update_data)) {
@@ -103,10 +103,10 @@ class HeraGroup extends BaseHerauthAuthResourceApi
         $data = $this->getDataRequest();
         if (isset($data['purge'])) {
             herauth_grant("group.post_purge");
-            $group = $this->model->where(['nama !=' => 'superadmin'])->withDeleted(true)->find($id);
+            $group = $this->model->where(['name !=' => 'superadmin'])->withDeleted(true)->find($id);
         } else {
             herauth_grant("group.post_delete");
-            $group = $this->model->where(['nama !=' => 'superadmin'])->find($id);
+            $group = $this->model->where(['name !=' => 'superadmin'])->find($id);
         }
         if ($group) {
             if (isset($data['purge'])) {

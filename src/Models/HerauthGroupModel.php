@@ -13,7 +13,7 @@ class HerauthGroupModel extends BaseHerauthModel
 	protected $returnType           = HerauthGroupEntity::class;
 	protected $useSoftDeletes       = true;
 	protected $protectFields        = true;
-	protected $allowedFields        = ['nama','deskripsi','deleted_at'];
+	protected $allowedFields        = ['name','description','deleted_at'];
 
 	// Dates
 	protected $useTimestamps        = true;
@@ -39,8 +39,8 @@ class HerauthGroupModel extends BaseHerauthModel
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	public function findGroupByName($nama)
+	public function findGroupByName($name)
 	{
-		return $this->where(['nama' => $nama])->first();
+		return $this->where(['name' => $name])->first();
 	}
 }

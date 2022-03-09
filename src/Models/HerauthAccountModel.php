@@ -47,7 +47,7 @@ class HerauthAccountModel extends BaseHerauthModel
 				$this->setMessage(lang("Auth.badAttempt"));
 				return false;
 			}
-			$this->setMessage(lang("Auth.loginSuccess", [$admin->profil->nama ?? '']));
+			$this->setMessage(lang("Auth.loginSuccess", [$admin->profil->name ?? '']));
 			return $admin;
 		} else {
 			$this->setMessage(lang("Auth.badAttempt"));

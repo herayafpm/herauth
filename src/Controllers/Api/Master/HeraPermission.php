@@ -22,9 +22,9 @@ class HeraPermission extends BaseHerauthAuthResourceApi
             $offset = (int) $data['offset'];
         }
         if ($limit > 0) {
-            $permissions = $this->model->select("id,nama,deskripsi")->findAll($limit, $offset);
+            $permissions = $this->model->select("id,name,description")->findAll($limit, $offset);
         } else {
-            $permissions = $this->model->select("id,nama,deskripsi")->findAll();
+            $permissions = $this->model->select("id,name,description")->findAll();
         }
         return $this->respond(["status" => true, "message" => lang("Api.successRetrieveRequest", [lang("Web.master.permission")]), "data" => $permissions], 200);
     }
@@ -34,7 +34,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         herauth_grant("permission.post_datatable");
         $data = $this->getDataRequest();
         $like = [
-            'nama' => $data['search']['value'] ?? ''
+            'name' => $data['search']['value'] ?? ''
         ];
         $this->request->message_after = lang("Api.successRetrieveRequest", [lang("Web.master.permission")]);
         return $this->respond($this->datatable_get(['withDeleted' => true, 'like' => $like]), 200);
@@ -45,9 +45,9 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         herauth_grant("permission.post_add");
         $data = $this->getDataRequest();
         $rules = [
-            'nama' => [
-                'label'  => lang("Api.validation.master.nama", [lang("Web.master.permission")]),
-                'rules'  => "required|is_unique[herauth_permission.nama]",
+            'name' => [
+                'label'  => lang("Api.validation.master.name", [lang("Web.master.permission")]),
+                'rules'  => "required|is_unique[herauth_permission.name]",
                 'errors' => []
             ],
             'must_login' => [
@@ -61,8 +61,8 @@ class HeraPermission extends BaseHerauthAuthResourceApi
             return $this->response->setStatusCode(400)->setJSON(["status" => false, "message" => lang("Validation.errorValidation"), "data" => $this->validator->getErrors()]);
         }
         $insertData = [
-            'nama' => $data['nama'],
-            'deskripsi' => $data['deskripsi'] ?? '',
+            'name' => $data['name'],
+            'description' => $data['description'] ?? '',
             'must_login' => (bool)$data['must_login'] ? 1 : 0,
         ];
 
@@ -81,9 +81,9 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         }
         $data = $this->getDataRequest();
         $rules = [
-            'nama' => [
-                'label'  => lang("Api.validation.master.nama", [lang("Web.master.permission")]),
-                'rules'  => "required|is_unique[herauth_permission.nama,id,{$id}]",
+            'name' => [
+                'label'  => lang("Api.validation.master.name", [lang("Web.master.permission")]),
+                'rules'  => "required|is_unique[herauth_permission.name,id,{$id}]",
                 'errors' => []
             ],
             'must_login' => [
@@ -97,8 +97,8 @@ class HeraPermission extends BaseHerauthAuthResourceApi
             return $this->response->setStatusCode(400)->setJSON(["status" => false, "message" => lang("Validation.errorValidation"), "data" => $this->validator->getErrors()]);
         }
         $update_data = [
-            'nama' => $data['nama'],
-            'deskripsi' => $data['deskripsi'] ?? '',
+            'name' => $data['name'],
+            'description' => $data['description'] ?? '',
             'must_login' => (bool)$data['must_login'] ? 1 : 0,
         ];
 

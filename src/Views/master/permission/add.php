@@ -10,18 +10,18 @@
                     {{messageApi}}
                 </div>
                 <div class="form-group">
-                    <label for="nama"><?= lang('Web.master.name') ?></label>
-                    <input type="text" class="form-control" :class="errorsApi.nama !== undefined?'is-invalid':''" name="nama" v-model="nama" placeholder="<?= lang('Web.master.name') ?>">
+                    <label for="name"><?= lang('Web.master.name') ?></label>
+                    <input type="text" class="form-control" :class="errorsApi.name !== undefined?'is-invalid':''" name="name" v-model="name" placeholder="<?= lang('Web.master.name') ?>">
                     <div class="invalid-feedback">
-                        {{errorsApi.nama}}
+                        {{errorsApi.name}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="deskripsi"><?= lang('Web.master.desc') ?> (<?= lang('Web.optional') ?>)</label>
-                    <textarea class="form-control" :class="errorsApi.deskripsi !== undefined?'is-invalid':''" name="deskripsi" v-model="deskripsi" placeholder="<?= lang('Web.master.desc') ?> (<?= lang('Web.optional') ?>)" rows="5">
+                    <label for="description"><?= lang('Web.master.desc') ?> (<?= lang('Web.optional') ?>)</label>
+                    <textarea class="form-control" :class="errorsApi.description !== undefined?'is-invalid':''" name="description" v-model="description" placeholder="<?= lang('Web.master.desc') ?> (<?= lang('Web.optional') ?>)" rows="5">
                     </textarea>
                     <div class="invalid-feedback">
-                        {{errorsApi.deskripsi}}
+                        {{errorsApi.description}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -53,8 +53,8 @@
 <?php $this->section('js') ?>
 <script>
     dataVue = {
-        nama: "",
-        deskripsi: ``,
+        name: "",
+        description: ``,
         must_login: true,
         loadingApi: false,
         messageApi: '',
@@ -74,8 +74,8 @@
             this.loadingApi = true
             this.cleanForm()
             var formData = new FormData()
-            formData.append('nama', this.nama);
-            formData.append('deskripsi', this.deskripsi);
+            formData.append('name', this.name);
+            formData.append('description', this.description);
             formData.append('must_login', this.must_login ? 1: 0);
 
             await axios.post("<?= $url_add ?>", formData, {

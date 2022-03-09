@@ -1,8 +1,8 @@
 -- mysql
 CREATE TABLE herauth_group (
     id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nama varchar(255) NULL,
-	deskripsi text NULL,
+    name varchar(255) NULL,
+	description text NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
 	deleted_at datetime NULL
@@ -55,8 +55,8 @@ CREATE TABLE herauth_account_group (
 -- mysql
 CREATE TABLE herauth_permission (
     id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nama varchar(255) NULL,
-	deskripsi text NULL,
+    name varchar(255) NULL,
+	description text NULL,
     must_login int DEFAULT 1,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
@@ -104,7 +104,7 @@ CREATE TABLE herauth_request_log (
 CREATE TABLE herauth_client (
     id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
     client_key varchar(255) NULL,
-    nama varchar(255) NULL,
+    name varchar(255) NULL,
     expired datetime NULL,
     hit_limit int NULL,
     created_at datetime DEFAULT NOW(),

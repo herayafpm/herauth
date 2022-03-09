@@ -64,7 +64,7 @@ class HeraAuth extends BaseHerauthResourceApi
             $jenis_akses = service('herauth')->getJenisAkses();
             if ($jenis_akses === 'web') {
                 $ses['username'] = $username;
-                $ses['nama'] = $login_success->nama;
+                $ses['name'] = $login_success->name;
                 $this->session->set($ses);
                 $data_res['redir'] = isset($data['redir'])?base_locale_url($data['redir']) : herauth_base_locale_url('');
             } else if ($jenis_akses === 'api') {

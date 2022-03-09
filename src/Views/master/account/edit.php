@@ -70,7 +70,7 @@
             this.loadingApi = true
             this.cleanForm()
             var formData = new FormData()
-            formData.append('nama', this.nama);
+            formData.append('name', this.name);
             formData.append('username', this.username);
             formData.append('password', this.password);
 

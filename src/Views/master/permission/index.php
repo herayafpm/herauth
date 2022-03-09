@@ -191,12 +191,12 @@
                     "data": "id",
                 },
                 {
-                    "data": "nama",
+                    "data": "name",
                 },
                 {
-                    "data": "deskripsi",
+                    "data": "description",
                     "render": function(dt, type, row, meta) {
-                        return row.deskripsi === null ? '-' : row.deskripsi
+                        return row.description === null ? '-' : row.description
                     }
                 },
                 {

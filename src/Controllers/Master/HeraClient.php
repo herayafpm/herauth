@@ -44,7 +44,7 @@ class HeraClient extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.client")." " . $client->nama,
+            'page_title' => lang("Web.edit")." ".lang("Web.master.client")." " . $client->name,
             'client' => $client,
             'url_edit' => herauth_web_url($this->root_view . "client/edit/".$id),
         ];
@@ -60,7 +60,7 @@ class HeraClient extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.client")." ".lang("Web.master.permission")." " . $client->nama,
+            'page_title' => lang("Web.master.client")." ".lang("Web.master.permission")." " . $client->name,
             'client' => $client,
             'url_save' => herauth_web_url($this->root_view . "client/save_permissions/".$id),
             'url_permissions' => herauth_web_url($this->root_view . "permission"),
@@ -77,7 +77,7 @@ class HeraClient extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.client")." ".lang("Web.master.whitelist")." " . $client->nama,
+            'page_title' => lang("Web.master.client")." ".lang("Web.master.whitelist")." " . $client->name,
             'client' => $client,
             'url_save' => herauth_web_url($this->root_view . "client/save_whitelists/".$id),
         ];

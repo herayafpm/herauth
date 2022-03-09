@@ -43,7 +43,7 @@ class HeraGroup extends BaseAmikompwtMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.group")." " . $group->nama,
+            'page_title' => lang("Web.edit")." ".lang("Web.master.group")." " . $group->name,
             'group' => $group,
             'url_edit' => herauth_web_url($this->root_view . "group/edit/".$id),
         ];
@@ -60,7 +60,7 @@ class HeraGroup extends BaseAmikompwtMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.account")." ".lang("Web.master.group")." " . $group->nama,
+            'page_title' => lang("Web.master.account")." ".lang("Web.master.group")." " . $group->name,
             'group' => $group,
             'url_add_account_group' => herauth_web_url($this->root_view . "group/add_account_group/".$id),
             'url_delete_account_group' => herauth_web_url($this->root_view . "group/delete_account_group/".$id),
@@ -78,7 +78,7 @@ class HeraGroup extends BaseAmikompwtMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.group")." ".lang("Web.master.permission")." " . $group->nama,
+            'page_title' => lang("Web.master.group")." ".lang("Web.master.permission")." " . $group->name,
             'group' => $group,
             'url_save' => herauth_web_url($this->root_view . "group/save_permissions/".$id),
             'url_permissions' => herauth_web_url($this->root_view . "permission"),

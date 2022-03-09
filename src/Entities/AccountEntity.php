@@ -47,7 +47,7 @@ class AccountEntity extends BaseHerauthEntity
 					return true;
 				}
 			} else if (is_string($group)) {
-				$names = array_column($accountGroups, 'nama');
+				$names = array_column($accountGroups, 'name');
 				if (in_array($group, $names)) {
 					return true;
 				}
@@ -106,7 +106,7 @@ class AccountEntity extends BaseHerauthEntity
 		}
 
 		// Otherwise, pull it from the database.
-		$p = $this->permission_model->asObject()->where('nama', $permission)->first();
+		$p = $this->permission_model->asObject()->where('name', $permission)->first();
 
 		if (!$p) {
 			$this->error = lang('Api.account.permissionNotFound', [$permission]);
@@ -119,7 +119,7 @@ class AccountEntity extends BaseHerauthEntity
 
 	public function groups()
 	{
-		return $this->account_group_model->join("herauth_group group", "herauth_account_group.group_id = group.id")->where('account_id', $this->id)->findColumn('nama');
+		return $this->account_group_model->join("herauth_group group", "herauth_account_group.group_id = group.id")->where('account_id', $this->id)->findColumn('name');
 	}
 
 	public function addGroup($name)
@@ -135,7 +135,7 @@ class AccountEntity extends BaseHerauthEntity
 	}
 	public function deleteGroup($name)
 	{
-		$account_group = $this->account_group_model->join("herauth_group group", "herauth_account_group.group_id = group.id")->where(['account_id' => $this->id,'nama' => $name])->first();
+		$account_group = $this->account_group_model->join("herauth_group group", "herauth_account_group.group_id = group.id")->where(['account_id' => $this->id,'name' => $name])->first();
 		if($account_group){
 			return $this->account_group_model->delete($account_group->id);
 		}

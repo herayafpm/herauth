@@ -10,10 +10,10 @@
                     {{messageApi}}
                 </div>
                 <div class="form-group">
-                    <label for="nama"><?= lang('Web.master.name') ?></label>
-                    <input type="text" class="form-control" :class="errorsApi.nama !== undefined?'is-invalid':''" name="nama" v-model="nama" placeholder="<?= lang('Web.master.name') ?>">
+                    <label for="name"><?= lang('Web.master.name') ?></label>
+                    <input type="text" class="form-control" :class="errorsApi.name !== undefined?'is-invalid':''" name="name" v-model="name" placeholder="<?= lang('Web.master.name') ?>">
                     <div class="invalid-feedback">
-                        {{errorsApi.nama}}
+                        {{errorsApi.name}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,7 +49,7 @@
 <?php $this->section('js') ?>
 <script>
     dataVue = {
-        nama: "<?= $client->nama ?? '' ?>",
+        name: "<?= $client->name ?? '' ?>",
         expired: "<?= !empty($client->expired) ? $client->expired->format("Y-m-d") : '' ?>",
         hit_limit: "<?= $client->hit_limit ?? '' ?>",
         loadingApi: false,
@@ -70,7 +70,7 @@
             this.loadingApi = true
             this.cleanForm()
             var formData = new FormData()
-            formData.append('nama', this.nama);
+            formData.append('name', this.name);
             formData.append('expired', this.expired);
             formData.append('hit_limit', this.hit_limit);
 

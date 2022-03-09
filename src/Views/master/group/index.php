@@ -189,12 +189,12 @@
                     "data": "id",
                 },
                 {
-                    "data": "nama",
+                    "data": "name",
                 },
                 {
-                    "data": "deskripsi",
+                    "data": "description",
                     "render": function(dt, type, row, meta) {
-                        return row.deskripsi === null ? '-' : row.deskripsi
+                        return row.description === null ? '-' : row.description
                     }
                 },
                 {
@@ -217,7 +217,7 @@
                                 <i class="fas fa-fw fa-lock"></i>
                             </a>
                             `
-                        if (row.nama !== 'superadmin') {
+                        if (row.name !== 'superadmin') {
                             html += `
                             <a role="button" class="btn btn-sm btn-primary" href="<?= $url_edit ?>${row.id}">
                                 <i class="fas fa-fw fa-edit"></i>

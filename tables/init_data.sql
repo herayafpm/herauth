@@ -1,4 +1,4 @@
-INSERT INTO herauth_group (nama,deskripsi) VALUES 
+INSERT INTO herauth_group (name,description) VALUES 
 -- 1
 ('superadmin','Super Admin'),
 -- 2
@@ -29,7 +29,7 @@ INSERT INTO herauth_account_group (account_id,group_id) VALUES
 -- admin (admin)
 (2,2);
 
-INSERT INTO herauth_permission (nama,deskripsi,must_login) VALUES 
+INSERT INTO herauth_permission (name,description,must_login) VALUES 
 -- (1-2)
 ('auth.login','can login',0),
 ('user_account.get_profil','Get Data Profil',1),
@@ -176,7 +176,7 @@ INSERT INTO herauth_group_permission (group_id,permission_id) VALUES
 -- User Account
 (1,60);
 
-INSERT INTO herauth_client (client_key,nama,expired,hit_limit) VALUES 
+INSERT INTO herauth_client (client_key,name,expired,hit_limit) VALUES 
 ('384d8a1a-8cde-4a22-803a-5a8415b0ffd8','Testing',null,null);
 
 INSERT INTO herauth_client_whitelist (client_id,whitelist_name,whitelist_type,whitelist_key) VALUES 

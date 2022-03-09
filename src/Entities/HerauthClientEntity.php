@@ -83,7 +83,7 @@ class HerauthClientEntity extends BaseHerauthEntity
         }
 
         // Otherwise, pull it from the database.
-        $p = $this->permission_model->asObject()->where('nama', $permission)->first();
+        $p = $this->permission_model->asObject()->where('name', $permission)->first();
 
         if (!$p) {
             $this->error = lang('Client.permission.notFound', [$permission]);
@@ -179,7 +179,7 @@ class HerauthClientEntity extends BaseHerauthEntity
 
         $whitelist = $this->client_whitelist_model->where($where)->first();
         if (!empty($whitelist)) {
-            return $this->attributes['nama'] . " " . $whitelist->whitelist_name;
+            return $this->attributes['name'] . " " . $whitelist->whitelist_name;
         }
         return null;
     }

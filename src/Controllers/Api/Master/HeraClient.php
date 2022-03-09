@@ -16,7 +16,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
         herauth_grant("client.post_datatable");
         $data = $this->getDataRequest();
         $like = [
-            'nama' => $data['search']['value'] ?? ''
+            'name' => $data['search']['value'] ?? ''
         ];
         $this->request->message_after = lang("Api.successRetrieveRequest", [lang("Web.master.client")]);
         return $this->respond($this->datatable_get(['withDeleted' => true, 'like' => $like]), 200);
@@ -27,8 +27,8 @@ class HeraClient extends BaseHerauthAuthResourceApi
         herauth_grant("client.post_add");
         $data = $this->getDataRequest();
         $rules = [
-            'nama' => [
-                'label'  => lang("Api.validation.master.nama", [lang("Web.master.client")]),
+            'name' => [
+                'label'  => lang("Api.validation.master.name", [lang("Web.master.client")]),
                 'rules'  => "required",
                 'errors' => []
             ]
@@ -38,7 +38,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
             return $this->response->setStatusCode(400)->setJSON(["status" => false, "message" => lang("Validation.errorValidation"), "data" => $this->validator->getErrors()]);
         }
         $insertData = [
-            'nama' => $data['nama']
+            'name' => $data['name']
         ];
         if (!empty($data['expired'])) {
             $insertData['expired'] = date("Y-m-d H:i:s", strtotime($data['expired']." 23:59:59"));
@@ -61,8 +61,8 @@ class HeraClient extends BaseHerauthAuthResourceApi
         }
         $data = $this->getDataRequest();
         $rules = [
-            'nama' => [
-                'label'  => lang("Api.validation.master.nama", [lang("Web.master.client")]),
+            'name' => [
+                'label'  => lang("Api.validation.master.name", [lang("Web.master.client")]),
                 'rules'  => "required",
                 'errors' => []
             ]
@@ -72,7 +72,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
             return $this->response->setStatusCode(400)->setJSON(["status" => false, "message" => lang("Validation.errorValidation"), "data" => $this->validator->getErrors()]);
         }
         $update_data = [
-            'nama' => $data['nama'],
+            'name' => $data['name'],
             'expired' => null,
             'hit_limit' => null,
             'client_key' => $client->client_key

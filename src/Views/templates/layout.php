@@ -89,7 +89,7 @@
                         <img src="<?= herauth_asset_url('vendor/adminlte') ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"><?= $_account->profil->nama ?></a>
+                        <a href="#" class="d-block"><?= $_account->profil->name ?></a>
                     </div>
                 </div>
                 <?php
@@ -111,19 +111,19 @@
                         <?php
                         $list_master_data = [
                             [
-                                'nama' => lang("Web.master.group"),
+                                'name' => lang("Web.master.group"),
                                 'this_url' =>  'group'
                             ],
                             [
-                                'nama' => lang("Web.master.permission"),
+                                'name' => lang("Web.master.permission"),
                                 'this_url' =>  'permission'
                             ],
                             [
-                                'nama' => lang("Web.master.client"),
+                                'name' => lang("Web.master.client"),
                                 'this_url' =>  'client'
                             ],
                             [
-                                'nama' => lang("Web.master.account"),
+                                'name' => lang("Web.master.account"),
                                 'this_url' =>  'account'
                             ],
                         ];
@@ -147,7 +147,7 @@
                                     <li class="nav-item">
                                         <a href="<?= herauth_base_locale_url('master/' . $master_data['this_url']) ?>" class="nav-link <?= strpos($url, '/master/' . $master_data['this_url']) !== false ? 'active' : '' ?>">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p><?= $master_data['nama'] ?></p>
+                                            <p><?= $master_data['name'] ?></p>
                                         </a>
                                     </li>
                                 <?php endforeach;

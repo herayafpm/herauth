@@ -69,7 +69,7 @@ class HerauthAccountEntity extends AccountEntity
 		$herauth = service('Herauth');
 		$client = $herauth->getClient();
 		if($client){
-			$whereInNotif[] = $client->nama;
+			$whereInNotif[] = $client->name;
 		}
 		if(!empty($notif_in)){
 			$whereInNotif[] = $notif_in;
