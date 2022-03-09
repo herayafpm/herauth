@@ -1,0 +1,87 @@
+<?php
+
+namespace Raydragneel\Herauth\Controllers\Master;
+
+use Raydragneel\Herauth\Models\HerauthClientModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
+
+class HeraClient extends BaseHerauthMasterController
+{
+    protected $modelName = HerauthClientModel::class;
+
+    public function index()
+    {
+        herauth_grant("client.view_index","page");
+        $data = [
+            'page_title' => lang("Web.master.client"),
+            'url_datatable' => herauth_web_url($this->root_view . "client/datatable"),
+            'url_add' => herauth_base_locale_url($this->root_view . "client/add"),
+            'url_edit' => herauth_base_locale_url($this->root_view . "client/edit/"),
+            'url_delete' => herauth_web_url($this->root_view . "client/delete/"),
+            'url_restore' => herauth_web_url($this->root_view . "client/restore/"),
+            'url_regenerate_key' => herauth_web_url($this->root_view . "client/regenerate_key/"),
+            'url_permissions' => herauth_base_locale_url($this->root_view . "client/permissions/"),
+            'url_whitelists' => herauth_base_locale_url($this->root_view . "client/whitelists/"),
+        ];
+        return $this->view("client/index", $data);
+    }
+
+    public function add()
+    {
+        herauth_grant("client.view_add","page");
+        $data = [
+            'page_title' => lang("Web.add")." ".lang("Web.master.client"),
+            'url_add' => herauth_web_url($this->root_view . "client/add"),
+        ];
+        return $this->view("client/add", $data);
+    }
+    public function edit($id = null)
+    {
+        herauth_grant("client.view_edit","page");
+        $client = $this->model->withDeleted(true)->find($id);
+        if (!$client) {
+            throw new PageNotFoundException();
+        }
+
+        $data = [
+            'page_title' => lang("Web.edit")." ".lang("Web.master.client")." " . $client->nama,
+            'client' => $client,
+            'url_edit' => herauth_web_url($this->root_view . "client/edit/".$id),
+        ];
+        return $this->view("client/edit", $data);
+    }
+
+    public function permissions($id = null)
+    {
+        herauth_grant("client.view_permissions","page");
+        $client = $this->model->withDeleted(true)->find($id);
+        if (!$client) {
+            throw new PageNotFoundException();
+        }
+
+        $data = [
+            'page_title' => lang("Web.master.client")." ".lang("Web.master.permission")." " . $client->nama,
+            'client' => $client,
+            'url_save' => herauth_web_url($this->root_view . "client/save_permissions/".$id),
+            'url_permissions' => herauth_web_url($this->root_view . "permission"),
+            'url_client_permissions' => herauth_web_url($this->root_view . "client/permissions/".$id),
+        ];
+        return $this->view("client/permission", $data);
+    }
+    public function whitelists($id = null)
+    {
+        herauth_grant("client.view_whitelists","page");
+        $client = $this->model->withDeleted(true)->find($id);
+        if (!$client) {
+            throw new PageNotFoundException();
+        }
+
+        $data = [
+            'page_title' => lang("Web.master.client")." ".lang("Web.master.whitelist")." " . $client->nama,
+            'client' => $client,
+            'url_save' => herauth_web_url($this->root_view . "client/save_whitelists/".$id),
+        ];
+        return $this->view("client/whitelist", $data);
+    }
+
+}

@@ -1,0 +1,22 @@
+{
+    "name": "raydragneel/herauth",
+    "description": "Library Herauth",
+    "type": "library",
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "firebase/php-jwt": "^6.0",
+        "ramsey/uuid": "^4.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Raydragneel\\Herauth\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "heraya",
+            "email": "herayafpm@gmail.com"
+        }
+    ]
+}
