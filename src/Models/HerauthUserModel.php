@@ -40,9 +40,9 @@ class HerauthUserModel extends BaseHerauthModel
     protected $beforeDelete         = [];
     protected $afterDelete          = [];
 
-    public function getProfil($id_account)
+    public function getProfil($account_id)
 	{
-		return $this->select("*")->where(['id_account' => $id_account])->first();
+		return $this->select("*")->where(['account_id' => $account_id])->first();
 	}
 
 }
