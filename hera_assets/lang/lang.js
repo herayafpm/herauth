@@ -102,7 +102,11 @@ function herlangjsFormatMessage(message, args) {
         })
         return message;
     }
-    return message.format(args)
+    if(typeof message === 'string'){
+        return message.format(args)
+    }else{
+        return message;
+    }
 }
 
 function herlangjsParseLine(line) {
