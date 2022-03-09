@@ -13,7 +13,7 @@
                 <table id="tableRequestLog" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center" width="10"><?=lang("datatable.no")?></th>
+                            <th class="text-center" width="10"><?=lang("Label.datatable.no")?></th>
                             <th><?=lang("Label.username")?></th>
                             <th><?=lang("Label.client.text")?></th>
                             <th><?=lang("Label.path")?></th>
