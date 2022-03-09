@@ -24,7 +24,7 @@
         <a href="<?= herauth_base_url() ?>" class="h1"><?= $__app_name ?></a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg"><?=lang("Web.login")?> <?=lang("Web.master.admin")?></p>
+        <p class="login-box-msg"><?=lang("Label.login")?> <?=lang("Label.admin")?></p>
 
         <form method="post" @submit.prevent="loginProcess">
           <div v-if="alertType !== ''" class="alert" :class="'alert-'+alertType">{{messageApi}}</div>
@@ -52,10 +52,10 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?=lang("Web.login")?></button>
+              <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?=lang("Label.login")?></button>
               <button v-else type="submit" class="btn btn-primary btn-block" disabled>
                 <div class="d-flex align-items-center">
-                  <strong><?=lang("Web.login")?>...</strong>
+                  <strong><?=lang("Label.login")?>...</strong>
                   <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
                 </div>
               </button>
@@ -83,8 +83,8 @@
     var vue = new Vue({
       el: '#appVue',
       data: {
-        username: 'admin11',
-        password: 'adminn',
+        username: '',
+        password: '',
         showPass: false,
         loadingApi: false,
         messageApi: '',

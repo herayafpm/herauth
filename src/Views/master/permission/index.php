@@ -10,30 +10,30 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <a role="button" class="btn btn-sm btn-success" href="<?= $url_add ?>"><?= lang("Web.add") . " " . lang("Web.master.permission") ?></a>
+                <a role="button" class="btn btn-sm btn-success" href="<?= $url_add ?>"><?= lang("Label.add") . " " . lang("Label.permission") ?></a>
             </div>
             <div class="card-body">
                 <table id="tableMaster" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center" width="10"><?= lang("Web.datatable.no") ?></th>
-                            <th><?= lang("Web.master.name") ?></th>
-                            <th><?= lang("Web.master.desc") ?></th>
-                            <th><?= lang("Web.master.must_login") ?></th>
-                            <th><?= lang("Web.datatable.updatedAt") ?></th>
-                            <th width="100"><?= lang("Web.datatable.action") ?></th>
+                            <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
+                            <th><?= lang("Label.name") ?></th>
+                            <th><?= lang("Label.description") ?></th>
+                            <th><?= lang("Label.must_login") ?></th>
+                            <th><?= lang("Label.datatable.updatedAt") ?></th>
+                            <th width="100"><?= lang("Label.datatable.action") ?></th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th class="text-center" width="10"><?= lang("Web.datatable.no") ?></th>
-                            <th><?= lang("Web.master.name") ?></th>
-                            <th><?= lang("Web.master.desc") ?></th>
-                            <th><?= lang("Web.master.must_login") ?></th>
-                            <th><?= lang("Web.datatable.updatedAt") ?></th>
-                            <th width="100"><?= lang("Web.datatable.action") ?></th>
+                            <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
+                            <th><?= lang("Label.name") ?></th>
+                            <th><?= lang("Label.description") ?></th>
+                            <th><?= lang("Label.must_login") ?></th>
+                            <th><?= lang("Label.datatable.updatedAt") ?></th>
+                            <th width="100"><?= lang("Label.datatable.action") ?></th>
                         </tr>
                     </tfoot>
                 </table>
@@ -136,15 +136,15 @@
             "language": {
                 "buttons": {
                     "pageLength": {
-                        "_": herlangjs("Web.datatable.show") + " %d " + herlangjs("Web.datatable.row") + " <i class='fas fa-fw fa-caret-down'></i>",
-                        "-1": herlangjs("Web.datatable.showAll") + " <i class='fas fa-fw fa-caret-down'></i>"
+                        "_": herlangjs("Label.datatable.show") + " %d " + herlangjs("Label.datatable.row") + " <i class='fas fa-fw fa-caret-down'></i>",
+                        "-1": herlangjs("Label.datatable.showAll") + " <i class='fas fa-fw fa-caret-down'></i>"
                     }
                 },
-                "lengthMenu": herlangjs("Web.datatable.show") + " _MENU_ " + herlangjs("Web.datatable.data") + " " + herlangjs("Web.datatable.per") + " " + herlangjs("Web.datatable.page"),
-                "zeroRecords": herlangjs("Web.datatable.data") + " " + herlangjs("Web.notFound"),
-                "info": herlangjs("Web.datatable.show") + " " + herlangjs("Web.datatable.page") + " _PAGE_ " + herlangjs("Web.datatable.from") + " _PAGES_",
-                "infoEmpty": herlangjs("Web.datatable.data") + " " + herlangjs("Web.empty"),
-                "infoFiltered": "(" + herlangjs("Web.datatable.di") + herlangjs("Web.datatable.filter") + " " + herlangjs("Web.datatable.from") + " _MAX_ " + herlangjs("Web.datatable.total") + " " + herlangjs("Web.datatable.data") + ")"
+                "lengthMenu": herlangjs("Label.datatable.show") + " _MENU_ " + herlangjs("Label.datatable.data") + " " + herlangjs("Label.datatable.per") + " " + herlangjs("Label.datatable.page"),
+                "zeroRecords": herlangjs("Label.datatable.data") + " " + herlangjs("Label.notFound"),
+                "info": herlangjs("Label.datatable.show") + " " + herlangjs("Label.datatable.page") + " _PAGE_ " + herlangjs("Label.datatable.from") + " _PAGES_",
+                "infoEmpty": herlangjs("Label.datatable.data") + " " + herlangjs("Label.empty"),
+                "infoFiltered": "(" + herlangjs("Label.datatable.di") + herlangjs("Label.datatable.filter") + " " + herlangjs("Label.datatable.from") + " _MAX_ " + herlangjs("Label.datatable.total") + " " + herlangjs("Label.datatable.data") + ")"
             },
             "dom": 'Bfrtip',
             "buttons": [
@@ -165,7 +165,7 @@
             "autoWidth": false,
             "lenthMenu": [
                 [10, 25, 50, -1],
-                ['10 ' + herlangjs("Web.datatable.row"), '25 ' + herlangjs("Web.datatable.row"), '50 ' + herlangjs("Web.datatable.row"), herlangjs("Web.datatable.showAll")]
+                ['10 ' + herlangjs("Label.datatable.row"), '25 ' + herlangjs("Label.datatable.row"), '50 ' + herlangjs("Label.datatable.row"), herlangjs("Label.datatable.showAll")]
             ],
             "ajax": {
                 "url": "<?= $url_datatable ?>", // URL file untuk proses select datanya
@@ -202,7 +202,7 @@
                 {
                     "data": "must_login",
                     "render": function(dt, type, row, meta) {
-                        return row.must_login == 1 ? herlangjs('Web.confirmText'): herlangjs('Web.cancelText')
+                        return row.must_login == 1 ? herlangjs('Label.yes'): herlangjs('Label.no')
                     }
                 },
                 {
@@ -252,13 +252,13 @@
         $("#tableMaster").on('click', '.hapusData', function() {
             var id = $(this).data('id')
             Swal.fire({
-                title: herlangjs('Web.confirmDelete', herlangjs('Web.master.permission')),
+                title: herlangjs('Label.confirm')+" "+herlangjs("Label.delete")+" "+herlangjs('Label.permission'),
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                cancelButtonText: herlangjs('Web.cancelText'),
-                confirmButtonText: herlangjs('Web.confirmText') + ", " + herlangjs('Web.delete') + "!",
+                cancelButtonText: herlangjs('Label.cancel'),
+                confirmButtonText: herlangjs('Label.confirm') + ", " + herlangjs('Label.delete') + "!",
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -269,13 +269,13 @@
         $("#tableMaster").on('click', '.restoreData', function() {
             var id = $(this).data('id')
             Swal.fire({
-                title: herlangjs('Web.confirmRestore', herlangjs('Web.master.permission')),
+                title: herlangjs('Label.confirm')+" "+herlangjs("Label.restore")+" "+ herlangjs('Label.permission'),
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                cancelButtonText: herlangjs('Web.cancelText'),
-                confirmButtonText: herlangjs('Web.confirmText') + ", " + herlangjs('Web.restore') + "!",
+                cancelButtonText: herlangjs('Label.cancel'),
+                confirmButtonText: herlangjs('Label.confirm') + ", " + herlangjs('Label.restore') + "!",
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -286,13 +286,13 @@
         $("#tableMaster").on('click', '.purgeData', function() {
             var id = $(this).data('id')
             Swal.fire({
-                title: herlangjs('Web.confirmPurge', herlangjs('Web.master.permission')),
+                title: herlangjs('Label.confirm') + " "+herlangjs("Label.purge")+ " "+herlangjs('Label.permission'),
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                cancelButtonText: herlangjs('Web.cancelText'),
-                confirmButtonText: herlangjs('Web.confirmText') + ", " + herlangjs('Web.purge') + "!",
+                cancelButtonText: herlangjs('Label.cancel'),
+                confirmButtonText: herlangjs('Label.confirm') + ", " + herlangjs('Label.purge') + "!",
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {

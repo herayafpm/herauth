@@ -10,32 +10,32 @@
                     {{messageApi}}
                 </div>
                 <div class="form-group">
-                    <label for="name"><?= lang('Web.master.name') ?></label>
-                    <input type="text" class="form-control" :class="errorsApi.name !== undefined?'is-invalid':''" name="name" v-model="name" placeholder="<?= lang('Web.master.name') ?>">
+                    <label for="name"><?= lang('Label.name') ?></label>
+                    <input type="text" class="form-control" :class="errorsApi.name !== undefined?'is-invalid':''" name="name" v-model="name" placeholder="<?= lang('Label.name') ?>">
                     <div class="invalid-feedback">
                         {{errorsApi.name}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="expired"><?= lang('Web.master.expired') ?> (<?= lang('Web.optional') ?>)</label>
-                    <input type="date" class="form-control" :class="errorsApi.expired !== undefined?'is-invalid':''" name="expired" v-model="expired" placeholder="<?= lang('Web.master.expired') ?> (<?= lang('Web.optional') ?>)">
+                    <label for="expired"><?= lang('Label.client.expired') ?> (<?= lang('Label.optional') ?>)</label>
+                    <input type="date" class="form-control" :class="errorsApi.expired !== undefined?'is-invalid':''" name="expired" v-model="expired" placeholder="<?= lang('Label.client.expired') ?> (<?= lang('Label.optional') ?>)">
                     <div class="invalid-feedback">
                         {{errorsApi.expired}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="hit_limit"><?= lang('Web.master.hit_limit') ?> (<?= lang('Web.optional') ?>)</label>
-                    <input type="number" min="0" class="form-control" :class="errorsApi.hit_limit !== undefined?'is-invalid':''" name="hit_limit" v-model="hit_limit" placeholder="<?= lang('Web.master.hit_limit') ?> (<?= lang('Web.optional') ?>)">
+                    <label for="hit_limit"><?= lang('Label.client.hit_limit') ?> (<?= lang('Label.optional') ?>)</label>
+                    <input type="number" min="0" class="form-control" :class="errorsApi.hit_limit !== undefined?'is-invalid':''" name="hit_limit" v-model="hit_limit" placeholder="<?= lang('Label.client.hit_limit') ?> (<?= lang('Label.optional') ?>)">
                     <div class="invalid-feedback">
                         {{errorsApi.hit_limit}}
                     </div>
                 </div>
             </div>
             <div class="col-12 mb-5">
-                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Web.save") ?></button>
+                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Label.save") ?></button>
                 <button v-else type="submit" class="btn btn-primary btn-block" disabled>
                     <div class="d-flex align-items-center">
-                        <strong><?= lang("Web.saving") ?>...</strong>
+                        <strong><?= lang("Label.saving") ?>...</strong>
                         <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
                     </div>
                 </button>

@@ -10,15 +10,15 @@
                     {{messageApi}}
                 </div>
                 <div class="form-group">
-                    <label for="name"><?= lang('Web.master.name') ?></label>
-                    <input type="text" class="form-control" :class="errorsApi.name !== undefined?'is-invalid':''" name="name" v-model="name" placeholder="<?= lang('Web.master.name') ?>">
+                    <label for="name"><?= lang('Label.name') ?></label>
+                    <input type="text" class="form-control" :class="errorsApi.name !== undefined?'is-invalid':''" name="name" v-model="name" placeholder="<?= lang('Label.name') ?>">
                     <div class="invalid-feedback">
                         {{errorsApi.name}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="description"><?= lang('Web.master.desc') ?> (<?= lang('Web.optional') ?>)</label>
-                    <textarea class="form-control" :class="errorsApi.description !== undefined?'is-invalid':''" name="description" v-model="description" placeholder="<?= lang('Web.master.desc') ?> (<?= lang('Web.optional') ?>)" rows="5">
+                    <label for="description"><?= lang('Label.description') ?> (<?= lang('Label.optional') ?>)</label>
+                    <textarea class="form-control" :class="errorsApi.description !== undefined?'is-invalid':''" name="description" v-model="description" placeholder="<?= lang('Label.description') ?> (<?= lang('Label.optional') ?>)" rows="5">
                     </textarea>
                     <div class="invalid-feedback">
                         {{errorsApi.description}}
@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="mustLoginCheck" :class="errorsApi.must_login !== undefined?'is-invalid':''" :checked="must_login" v-model="must_login">
-                        <label class="custom-control-label" for="mustLoginCheck"><?= lang("Web.master.must_login") ?>?</label>
+                        <label class="custom-control-label" for="mustLoginCheck"><?= lang("Label.must_login") ?>?</label>
                         <br />
                         <div class="invalid-feedback">
                             {{errorsApi.must_login}}
@@ -36,10 +36,10 @@
                 </div>
             </div>
             <div class="col-12 mb-5">
-                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang('Web.save') ?></button>
+                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang('Label.save') ?></button>
                 <button v-else type="submit" class="btn btn-primary btn-block" disabled>
                     <div class="d-flex align-items-center">
-                        <strong><?= lang('Web.saving') ?>...</strong>
+                        <strong><?= lang('Label.saving') ?>...</strong>
                         <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
                     </div>
                 </button>

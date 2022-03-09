@@ -13,7 +13,7 @@ class HeraPermission extends BaseHerauthMasterController
     {
         herauth_grant('permission.view_index','page');
         $data = [
-            'page_title' => lang("Web.master.permission"),
+            'page_title' => lang("Label.permission"),
             'url_datatable' => herauth_web_url($this->root_view . "permission/datatable"),
             'url_add' => herauth_base_locale_url($this->root_view . "permission/add"),
             'url_edit' => herauth_base_locale_url($this->root_view . "permission/edit/"),
@@ -27,7 +27,7 @@ class HeraPermission extends BaseHerauthMasterController
     {
         herauth_grant('permission.view_add','page');
         $data = [
-            'page_title' => lang("Web.add")." ".lang("Web.master.permission"),
+            'page_title' => lang("Label.add")." ".lang("Label.permission"),
             'url_add' => herauth_web_url($this->root_view . "permission/add"),
         ];
         return $this->view("permission/add", $data);
@@ -41,7 +41,7 @@ class HeraPermission extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.permission")." " . $permission->name,
+            'page_title' => lang("Label.edit")." ".lang("Label.permission")." " . $permission->name,
             'permission' => $permission,
             'url_edit' => herauth_web_url($this->root_view . "permission/edit/".$id),
         ];

@@ -14,17 +14,17 @@
                     {{messageApi}}
                 </div>
                 <div class="form-group">
-                    <label for="username"><?= lang('Auth.labelUsername') ?></label>
-                    <input type="text" class="form-control" :class="errorsApi.username !== undefined?'is-invalid':''" name="username" v-model="username" placeholder="<?= lang('Auth.labelUsername') ?>">
+                    <label for="username"><?= lang('Label.username') ?></label>
+                    <input type="text" class="form-control" :class="errorsApi.username !== undefined?'is-invalid':''" name="username" v-model="username" placeholder="<?= lang('Label.username') ?>">
                     <div class="invalid-feedback">
                         {{errorsApi.username}}
                     </div>
                 </div>
                 <div class="col-12 mb-3">
-                    <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Web.add") ?></button>
+                    <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Label.add") ?></button>
                     <button v-else type="submit" class="btn btn-primary btn-block" disabled>
                         <div class="d-flex align-items-center">
-                            <strong><?= lang("Web.adding") ?>...</strong>
+                            <strong><?= lang("Label.adding") ?>...</strong>
                             <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
                         </div>
                     </button>
@@ -32,25 +32,25 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            <?= lang("Web.master.accounts") ?>
+                            <?= lang("Label.accounts") ?>
                         </div>
                     </div>
                     <div class="card-body">
                         <table id="tableAccountGroup" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th class="text-center" width="10"><?= lang("Web.datatable.no") ?></th>
-                                    <th><?= lang("Auth.labelUsername") ?></th>
-                                    <th width="100"><?= lang("Web.datatable.action") ?></th>
+                                    <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
+                                    <th><?= lang("Label.username") ?></th>
+                                    <th width="100"><?= lang("Label.datatable.action") ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th class="text-center" width="10"><?= lang("Web.datatable.no") ?></th>
-                                    <th><?= lang("Auth.labelUsername") ?></th>
-                                    <th width="100"><?= lang("Web.datatable.action") ?></th>
+                                    <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
+                                    <th><?= lang("Label.username") ?></th>
+                                    <th width="100"><?= lang("Label.datatable.action") ?></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -127,13 +127,13 @@
         },
         async deleteUserGroup(username) {
             Swal.fire({
-                title: herlangjs('Web.confirmDelete', username),
+                title: herlangjs('Label.confirm')+" "+herlangjs("Label.delete")+" "+username,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                cancelButtonText: herlangjs('Web.cancelText'),
-                confirmButtonText: herlangjs('Web.confirmText') + ", " + herlangjs('Web.delete') + "!",
+                cancelButtonText: herlangjs('Label.cancel'),
+                confirmButtonText: herlangjs('Label.confirm') + ", " + herlangjs('Label.delete') + "!",
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -170,9 +170,8 @@
         async getUserGroups() {
             this.loadingApi = true
             this.cleanForm()
-            var formData = new FormData()
 
-            await axios.post("<?= $url_account_groups ?>", formData, {
+            await axios.get("<?= $url_account_groups ?>", {}, {
                 validateStatus: () => true
             }).then((res) => {
                 if (res.status !== 200) {
@@ -191,15 +190,15 @@
                             "language": {
                                 "buttons": {
                                     "pageLength": {
-                                        "_": herlangjs("Web.datatable.show") + " %d " + herlangjs("Web.datatable.row") + " <i class='fas fa-fw fa-caret-down'></i>",
-                                        "-1": herlangjs("Web.datatable.showAll") + " <i class='fas fa-fw fa-caret-down'></i>"
+                                        "_": herlangjs("Label.datatable.show") + " %d " + herlangjs("Label.datatable.row") + " <i class='fas fa-fw fa-caret-down'></i>",
+                                        "-1": herlangjs("Label.datatable.showAll") + " <i class='fas fa-fw fa-caret-down'></i>"
                                     }
                                 },
-                                "lengthMenu": herlangjs("Web.datatable.show") + " _MENU_ " + herlangjs("Web.datatable.data") + " " + herlangjs("Web.datatable.per") + " " + herlangjs("Web.datatable.page"),
-                                "zeroRecords": herlangjs("Web.datatable.data") + " " + herlangjs("Web.notFound"),
-                                "info": herlangjs("Web.datatable.show") + " " + herlangjs("Web.datatable.page") + " _PAGE_ " + herlangjs("Web.datatable.from") + " _PAGES_",
-                                "infoEmpty": herlangjs("Web.datatable.data") + " " + herlangjs("Web.empty"),
-                                "infoFiltered": "(" + herlangjs("Web.datatable.di") + herlangjs("Web.datatable.filter") + " " + herlangjs("Web.datatable.from") + " _MAX_ " + herlangjs("Web.datatable.total") + " " + herlangjs("Web.datatable.data") + ")"
+                                "lengthMenu": herlangjs("Label.datatable.show") + " _MENU_ " + herlangjs("Label.datatable.data") + " " + herlangjs("Label.datatable.per") + " " + herlangjs("Label.datatable.page"),
+                                "zeroRecords": herlangjs("Label.datatable.data") + " " + herlangjs("Label.notFound"),
+                                "info": herlangjs("Label.datatable.show") + " " + herlangjs("Label.datatable.page") + " _PAGE_ " + herlangjs("Label.datatable.from") + " _PAGES_",
+                                "infoEmpty": herlangjs("Label.datatable.data") + " " + herlangjs("Label.empty"),
+                                "infoFiltered": "(" + herlangjs("Label.datatable.di") + herlangjs("Label.datatable.filter") + " " + herlangjs("Label.datatable.from") + " _MAX_ " + herlangjs("Label.datatable.total") + " " + herlangjs("Label.datatable.data") + ")"
                             },
                             "dom": 'Bfrtip',
                             "buttons": [{
@@ -215,7 +214,7 @@
                             "autoWidth": false,
                             "lengthMenu": [
                                 [10, 25, 50, -1],
-                                ['10 ' + herlangjs("Web.datatable.row"), '25 ' + herlangjs("Web.datatable.row"), '50 ' + herlangjs("Web.datatable.row"), herlangjs("Web.datatable.showAll")]
+                                ['10 ' + herlangjs("Label.datatable.row"), '25 ' + herlangjs("Label.datatable.row"), '50 ' + herlangjs("Label.datatable.row"), herlangjs("Label.datatable.showAll")]
                             ],
                             "data": res.data.data,
                             'columnDefs': [{

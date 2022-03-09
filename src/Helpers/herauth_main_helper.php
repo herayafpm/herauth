@@ -13,7 +13,7 @@ if (!function_exists('herauth_base_url')) {
 if (!function_exists('herauth_asset_url')) {
     function herauth_asset_url($url = '')
     {
-        return herauth_base_url('assets/' . $url);
+        return base_url('hera_assets/' . $url);
     }
 }
 if (!function_exists('herauth_base_locale_url')) {

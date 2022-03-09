@@ -7,13 +7,13 @@ INSERT INTO herauth_group (name,description) VALUES
 ('herauth', 'Authorize Herauth App Access');
 
 INSERT INTO herauth_account_model (model_name,model,jenis) VALUES 
-("pengguna","Raydragneel/Herauth/Models/HerauthUserModel","ci-4");
+("user","Raydragneel/Herauth/Models/HerauthUserModel","ci-4");
 
 INSERT INTO herauth_account (username,password,model_name) VALUES 
 -- superadmin (1)
-('superadmin','$2y$10$T3VGpRktNJrJzVzwTsT0Z.ixlxcaolAbMpQaAbUKrdaxknBi8IRJq','pengguna'),
+('superadmin','$2y$10$T3VGpRktNJrJzVzwTsT0Z.ixlxcaolAbMpQaAbUKrdaxknBi8IRJq','user'),
 -- admin (2)
-('admin','$2y$10$T3VGpRktNJrJzVzwTsT0Z.ixlxcaolAbMpQaAbUKrdaxknBi8IRJq','pengguna');
+('admin','$2y$10$T3VGpRktNJrJzVzwTsT0Z.ixlxcaolAbMpQaAbUKrdaxknBi8IRJq','user');
 
 INSERT INTO herauth_user (account_id,name) VALUES 
 -- superadmin (1)
@@ -64,7 +64,7 @@ INSERT INTO herauth_permission (name,description,must_login) VALUES
 ('client.post_regenerate_key','Api post regenerate key client',1),
 ('client.get_permissions','Api get permissions group',1),
 ('client.post_save_permissions','Api post save client permissions group',1),
-('client.save_whitelists','Api post save client whitelists',1),
+('client.post_save_whitelists','Api post save client whitelists',1),
 -- Group (31 - 35)
 ('group.view_index','View Index group',1),
 ('group.view_add','View add group',1),

@@ -13,28 +13,28 @@
                 <table id="tableRequestLog" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center" width="10"><?=lang("Web.datatable.no")?></th>
-                            <th><?=lang("Auth.labelUsername")?></th>
-                            <th><?=lang("Web.master.client")?></th>
-                            <th><?=lang("Web.master.path")?></th>
-                            <th><?=lang("Web.client.ipAddress")?></th>
-                            <th><?=lang("Web.statusCode")?></th>
-                            <th><?=lang("Web.statusMessage")?></th>
-                            <th><?=lang("Web.datatable.createdAt")?></th>
+                            <th class="text-center" width="10"><?=lang("datatable.no")?></th>
+                            <th><?=lang("Label.username")?></th>
+                            <th><?=lang("Label.client.text")?></th>
+                            <th><?=lang("Label.path")?></th>
+                            <th><?=lang("Label.client.ipAddress")?></th>
+                            <th><?=lang("Label.statusCode")?></th>
+                            <th><?=lang("Label.statusMessage")?></th>
+                            <th><?=lang("Label.datatable.createdAt")?></th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th class="text-center" width="10"><?=lang("Web.datatable.no")?></th>
-                            <th><?=lang("Auth.labelUsername")?></th>
-                            <th><?=lang("Web.master.client")?></th>
-                            <th><?=lang("Web.master.path")?></th>
-                            <th><?=lang("Web.client.ipAddress")?></th>
-                            <th><?=lang("Web.statusCode")?></th>
-                            <th><?=lang("Web.statusMessage")?></th>
-                            <th><?=lang("Web.datatable.createdAt")?></th>
+                            <th class="text-center" width="10"><?=lang("Label.datatable.no")?></th>
+                            <th><?=lang("Label.username")?></th>
+                            <th><?=lang("Label.client.text")?></th>
+                            <th><?=lang("Label.path")?></th>
+                            <th><?=lang("Label.client.ipAddress")?></th>
+                            <th><?=lang("Label.statusCode")?></th>
+                            <th><?=lang("Label.statusMessage")?></th>
+                            <th><?=lang("Label.datatable.createdAt")?></th>
                         </tr>
                     </tfoot>
                 </table>
@@ -87,15 +87,15 @@
             "language": {
                 "buttons": {
                     "pageLength": {
-                        "_": herlangjs("Web.datatable.show") + " %d " + herlangjs("Web.datatable.row") + " <i class='fas fa-fw fa-caret-down'></i>",
-                        "-1": herlangjs("Web.datatable.showAll") + " <i class='fas fa-fw fa-caret-down'></i>"
+                        "_": herlangjs("Label.datatable.show") + " %d " + herlangjs("Label.datatable.row") + " <i class='fas fa-fw fa-caret-down'></i>",
+                        "-1": herlangjs("Label.datatable.showAll") + " <i class='fas fa-fw fa-caret-down'></i>"
                     }
                 },
-                "lengthMenu": herlangjs("Web.datatable.show") + " _MENU_ " + herlangjs("Web.datatable.data") + " " + herlangjs("Web.datatable.per") + " " + herlangjs("Web.datatable.page"),
-                "zeroRecords": herlangjs("Web.datatable.data") + " " + herlangjs("Web.notFound"),
-                "info": herlangjs("Web.datatable.show") + " " + herlangjs("Web.datatable.page") + " _PAGE_ " + herlangjs("Web.datatable.from") + " _PAGES_",
-                "infoEmpty": herlangjs("Web.datatable.data") + " " + herlangjs("Web.empty"),
-                "infoFiltered": "(" + herlangjs("Web.datatable.di") + herlangjs("Web.datatable.filter") + " " + herlangjs("Web.datatable.from") + " _MAX_ " + herlangjs("Web.datatable.total") + " " + herlangjs("Web.datatable.data") + ")"
+                "lengthMenu": herlangjs("Label.datatable.show") + " _MENU_ " + herlangjs("Label.datatable.data") + " " + herlangjs("Label.datatable.per") + " " + herlangjs("Label.datatable.page"),
+                "zeroRecords": herlangjs("Label.datatable.data") + " " + herlangjs("Label.notFound"),
+                "info": herlangjs("Label.datatable.show") + " " + herlangjs("Label.datatable.page") + " _PAGE_ " + herlangjs("Label.datatable.from") + " _PAGES_",
+                "infoEmpty": herlangjs("Label.datatable.data") + " " + herlangjs("Label.empty"),
+                "infoFiltered": "(" + herlangjs("Label.datatable.di") + herlangjs("Label.datatable.filter") + " " + herlangjs("Label.datatable.from") + " _MAX_ " + herlangjs("Label.datatable.total") + " " + herlangjs("Label.datatable.data") + ")"
             },
             "dom": 'Bfrtip',
             "buttons": [
@@ -116,7 +116,7 @@
             "autoWidth": false,
             "lengthMenu": [
                 [10, 25, 50, -1],
-                ['10 ' + herlangjs("Web.datatable.row"), '25 ' + herlangjs("Web.datatable.row"), '50 ' + herlangjs("Web.datatable.row"), herlangjs("Web.datatable.showAll")]
+                ['10 ' + herlangjs("Label.datatable.row"), '25 ' + herlangjs("Label.datatable.row"), '50 ' + herlangjs("Label.datatable.row"), herlangjs("Label.datatable.showAll")]
             ],
             "ajax": {
                 "url": "<?= $url_datatable ?>", // URL file untuk proses select datanya

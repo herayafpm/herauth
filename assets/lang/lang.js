@@ -139,7 +139,7 @@ function herlangjsLoad(file, returned = false) {
     if (!(file in herlangList[locale])) {
         herlangList[locale][file] = []
     }
-    var path = locale + "/" + file + ".json";
+    var path = file;
 
     var lang = herLangRequireFile(path);
 
@@ -155,7 +155,7 @@ function herlangjsLoad(file, returned = false) {
 function herLangRequireFile(path) {
     var strings = {}
     var request = new XMLHttpRequest();
-    request.open('GET', localePath + '/' + path, false);  // `false` makes the request synchronous
+    request.open('GET', localePath+'?file='+path, false);  // `false` makes the request synchronous
     request.onload = function (e) {
         if (request.readyState === 4) {
             if (request.status === 200) {

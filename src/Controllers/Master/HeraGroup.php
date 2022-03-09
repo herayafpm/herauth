@@ -1,11 +1,10 @@
 <?php
 
 namespace Raydragneel\Herauth\Controllers\Master;
-
-use Raydragneel\Herauth\GroupModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use Raydragneel\Herauth\Models\HerauthGroupModel;
 
-class HeraGroup extends BaseAmikompwtMasterController
+class HeraGroup extends BaseHerauthMasterController
 {
     protected $modelName = HerauthGroupModel::class;
 
@@ -13,7 +12,7 @@ class HeraGroup extends BaseAmikompwtMasterController
     {
         herauth_grant("group.view_index","page");
         $data = [
-            'page_title' => lang("Web.master.group"),
+            'page_title' => lang("Label.group"),
             'url_datatable' => herauth_web_url($this->root_view . "group/datatable"),
             'url_add' => herauth_base_locale_url($this->root_view . "group/add"),
             'url_edit' => herauth_base_locale_url($this->root_view . "group/edit/"),
@@ -29,7 +28,7 @@ class HeraGroup extends BaseAmikompwtMasterController
     {
         herauth_grant("group.view_add","page");
         $data = [
-            'page_title' => lang("Web.add")." ".lang("Web.master.group"),
+            'page_title' => lang("Label.add")." ".lang("Label.group"),
             'url_add' => herauth_web_url($this->root_view . "group/add"),
         ];
         return $this->view("group/add", $data);
@@ -43,7 +42,7 @@ class HeraGroup extends BaseAmikompwtMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.group")." " . $group->name,
+            'page_title' => lang("Label.edit")." ".lang("Label.group")." " . $group->name,
             'group' => $group,
             'url_edit' => herauth_web_url($this->root_view . "group/edit/".$id),
         ];
@@ -60,7 +59,7 @@ class HeraGroup extends BaseAmikompwtMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.account")." ".lang("Web.master.group")." " . $group->name,
+            'page_title' => lang("Label.account")." ".lang("Label.group")." " . $group->name,
             'group' => $group,
             'url_add_account_group' => herauth_web_url($this->root_view . "group/add_account_group/".$id),
             'url_delete_account_group' => herauth_web_url($this->root_view . "group/delete_account_group/".$id),
@@ -78,7 +77,7 @@ class HeraGroup extends BaseAmikompwtMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.group")." ".lang("Web.master.permission")." " . $group->name,
+            'page_title' => lang("Label.group")." ".lang("Label.permission")." " . $group->name,
             'group' => $group,
             'url_save' => herauth_web_url($this->root_view . "group/save_permissions/".$id),
             'url_permissions' => herauth_web_url($this->root_view . "permission"),

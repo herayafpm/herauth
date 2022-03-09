@@ -13,7 +13,7 @@ class HeraAccount extends BaseHerauthMasterController
     {
         herauth_grant('account.view_index','page');
         $data = [
-            'page_title' => lang("Web.master.account"),
+            'page_title' => lang("Label.account"),
             'url_datatable' => herauth_web_url($this->root_view . "account/datatable"),
             'url_add' => herauth_base_locale_url($this->root_view . "account/add"),
             'url_edit' => herauth_base_locale_url($this->root_view . "account/edit/"),
@@ -28,7 +28,7 @@ class HeraAccount extends BaseHerauthMasterController
     {
         herauth_grant('account.view_add','page');
         $data = [
-            'page_title' => lang("Web.add")." ".lang("Web.master.account"),
+            'page_title' => lang("Label.add")." ".lang("Label.account"),
             'url_add' => herauth_web_url($this->root_view . "account/add"),
         ];
         return $this->view("account/add", $data);
@@ -41,7 +41,7 @@ class HeraAccount extends BaseHerauthMasterController
             throw new PageNotFoundException();
         }
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.account")." " . $account->profil->name,
+            'page_title' => lang("Label.edit")." ".lang("Label.account")." " . $account->profil->name,
             'account' => $account,
             'url_edit' => herauth_web_url($this->root_view . "account/edit/".$id),
         ];
@@ -56,7 +56,7 @@ class HeraAccount extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.group")." ".lang("Web.master.account")." " . $account->profil->name,
+            'page_title' => lang("Label.group")." ".lang("Label.account")." " . $account->profil->name,
             'account' => $account,
             'url_save' => herauth_web_url($this->root_view . "account/save_group/".$id),
             'url_groups' => herauth_web_url($this->root_view . "group"),

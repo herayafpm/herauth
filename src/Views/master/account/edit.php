@@ -10,16 +10,16 @@
                     {{messageApi}}
                 </div>
                 <div class="form-group">
-                    <label for="username"><?= lang('Auth.labelUsername') ?></label>
-                    <input type="text" class="form-control" :class="errorsApi.username !== undefined?'is-invalid':''" name="username" v-model="username" placeholder="<?= lang('Auth.labelUsername') ?>" disabled>
+                    <label for="username"><?= lang('Label.username') ?></label>
+                    <input type="text" class="form-control" :class="errorsApi.username !== undefined?'is-invalid':''" name="username" v-model="username" placeholder="<?= lang('Label.username') ?>" disabled>
                     <div class="invalid-feedback">
                         {{errorsApi.username}}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password"><?= lang('Auth.labelPassword') ?> (<?= lang("Web.optional") ?>)</label>
+                    <label for="password"><?= lang('Label.password') ?> (<?= lang("Label.optional") ?>)</label>
                     <div class="input-group mb-3">
-                        <input :type="showPass?'text':'password'" class="form-control" :class="errorsApi.password !== undefined?'is-invalid':''" placeholder="<?= lang('Auth.labelPassword') ?> (<?= lang("Web.optional") ?>)" v-model="password">
+                        <input :type="showPass?'text':'password'" class="form-control" :class="errorsApi.password !== undefined?'is-invalid':''" placeholder="<?= lang('Label.password') ?> (<?= lang("Label.optional") ?>)" v-model="password">
                         <div class="input-group-append" @click="showPass = !showPass">
                             <div class="input-group-text">
                                 <span class="fas" :class="showPass?'fa-eye-slash':'fa-eye'"></span>
@@ -32,10 +32,10 @@
                 </div>
             </div>
             <div class="col-12 mb-5">
-                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Web.save") ?></button>
+                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Label.save") ?></button>
                 <button v-else type="submit" class="btn btn-primary btn-block" disabled>
                     <div class="d-flex align-items-center">
-                        <strong><?= lang("Web.saving") ?>...</strong>
+                        <strong><?= lang("Label.saving") ?>...</strong>
                         <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
                     </div>
                 </button>

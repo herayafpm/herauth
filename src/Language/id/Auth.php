@@ -1,12 +1,5 @@
 <?php
 return [
-    'labelEmail' => "Email",
-    'labelUsername' => "Username",
-    'labelAccount' => "Account",
-    'labelPassword' => "Kata Sandi",
-    'labelConfirmPassword' => "Konfirmasi Kata Sandi",
-    'labelKodeOTP' => "Kode OTP",
-
     // login
     "badAttemptEmail" => "Email / Kata Sandi Salah",
     "badAttemptEmailNotVerified" => "Silahkan verifikasi email terlebih dahulu.",

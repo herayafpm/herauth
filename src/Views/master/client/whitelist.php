@@ -12,13 +12,13 @@
                 <div class="form-group">
                     <div class="row mt-1">
                         <div class="col-md-12">
-                            <?= lang('Web.client.ipAddress') ?>
+                            <?= lang('Label.client.ipAddress') ?>
                         </div>
                         <div class="col-md-6" v-for="(whitelist,index) in whitelist_ips">
                             <div class="form-group row">
-                                <input type="text" class="form-control form-control-sm col-md-6" v-model="whitelist.whitelist_name" placeholder="<?= lang('Web.master.name') ?> <?= lang('Web.client.ipAddress') ?>">
+                                <input type="text" class="form-control form-control-sm col-md-6" v-model="whitelist.whitelist_name" placeholder="<?= lang('Label.name') ?> <?= lang('Label.client.ipAddress') ?>">
                                 <div class="input-group col-md-6">
-                                    <input type="text" class="form-control form-control-sm" v-model="whitelist.whitelist_key" placeholder="<?= lang('Web.client.ipAddress') ?>">
+                                    <input type="text" class="form-control form-control-sm" v-model="whitelist.whitelist_key" placeholder="<?= lang('Label.client.ipAddress') ?>">
                                     <div class="input-group-prepend" style="cursor: pointer;" @click="deleteIpAddress(index)">
                                         <div class="input-group-text bg-danger">
                                             <i class="fas fa-times"></i>
@@ -28,20 +28,20 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary btn-sm" @click="addIpAddress()"><?= lang('Web.add') ?> <?= lang('Web.client.ipAddress') ?></button>
+                            <button type="button" class="btn btn-primary btn-sm" @click="addIpAddress()"><?= lang('Label.add') ?> <?= lang('Label.client.ipAddress') ?></button>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="row mt-1">
                         <div class="col-md-12">
-                            <?= lang('Web.client.android') ?>
+                            <?= lang('Label.client.android') ?>
                         </div>
                         <div class="col-md-6" v-for="(whitelist,index) in whitelist_androids">
                             <div class="form-group row">
-                                <input type="text" class="form-control form-control-sm col-md-6" v-model="whitelist.whitelist_name" placeholder="<?= lang('Web.master.name') ?> <?= lang('Web.client.android') ?>">
+                                <input type="text" class="form-control form-control-sm col-md-6" v-model="whitelist.whitelist_name" placeholder="<?= lang('Label.name') ?> <?= lang('Label.client.android') ?>">
                                 <div class="input-group col-md-6">
-                                    <input type="text" class="form-control form-control-sm" v-model="whitelist.whitelist_key" placeholder="<?= lang('Web.client.android') ?>">
+                                    <input type="text" class="form-control form-control-sm" v-model="whitelist.whitelist_key" placeholder="<?= lang('Label.client.android') ?>">
                                     <div class="input-group-prepend" style="cursor: pointer;" @click="deleteAndroid(index)">
                                         <div class="input-group-text bg-danger">
                                             <i class="fas fa-times"></i>
@@ -51,20 +51,20 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary btn-sm" @click="addAndroid()"><?= lang('Web.add') ?> <?= lang('Web.client.android') ?></button>
+                            <button type="button" class="btn btn-primary btn-sm" @click="addAndroid()"><?= lang('Label.add') ?> <?= lang('Label.client.android') ?></button>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="row mt-1">
                         <div class="col-md-12">
-                            <?= lang('Web.client.ios') ?>
+                            <?= lang('Label.client.ios') ?>
                         </div>
                         <div class="col-md-6" v-for="(whitelist,index) in whitelist_ioss">
                             <div class="form-group row">
-                                <input type="text" class="form-control form-control-sm col-md-6" v-model="whitelist.whitelist_name" placeholder="<?= lang('Web.master.name') ?> <?= lang('Web.client.ios') ?>">
+                                <input type="text" class="form-control form-control-sm col-md-6" v-model="whitelist.whitelist_name" placeholder="<?= lang('Label.name') ?> <?= lang('Label.client.ios') ?>">
                                 <div class="input-group col-md-6">
-                                    <input type="text" class="form-control form-control-sm" v-model="whitelist.whitelist_key" placeholder="<?= lang('Web.client.ios') ?>">
+                                    <input type="text" class="form-control form-control-sm" v-model="whitelist.whitelist_key" placeholder="<?= lang('Label.client.ios') ?>">
                                     <div class="input-group-prepend" style="cursor: pointer;" @click="deleteIos(index)">
                                         <div class="input-group-text bg-danger">
                                             <i class="fas fa-times"></i>
@@ -74,16 +74,16 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-primary btn-sm" @click="addIos()"><?= lang('Web.add') ?> <?= lang('Web.client.ios') ?></button>
+                            <button type="button" class="btn btn-primary btn-sm" @click="addIos()"><?= lang('Label.add') ?> <?= lang('Label.client.ios') ?></button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-12 mb-5">
-                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Web.save") ?></button>
+                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Label.save") ?></button>
                 <button v-else type="submit" class="btn btn-primary btn-block" disabled>
                     <div class="d-flex align-items-center">
-                        <strong><?= lang("Web.saving") ?>...</strong>
+                        <strong><?= lang("Label.saving") ?>...</strong>
                         <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
                     </div>
                 </button>
@@ -169,7 +169,7 @@
                         this.alertType = 'success'
                         this.messageApi = res.data.message
                         setTimeout(() => {
-                            window.location.reload()
+                            // window.location.reload()
                         }, 1000);
                     }
                 }

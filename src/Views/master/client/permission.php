@@ -17,10 +17,10 @@
                 </div>
             </div>
             <div class="col-12 mb-5">
-                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Web.save") ?></button>
+                <button v-if="!loadingApi" type="submit" class="btn btn-primary btn-block"><?= lang("Label.save") ?></button>
                 <button v-else type="submit" class="btn btn-primary btn-block" disabled>
                     <div class="d-flex align-items-center">
-                        <strong><?= lang("Web.saving") ?>...</strong>
+                        <strong><?= lang("Label.saving") ?>...</strong>
                         <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
                     </div>
                 </button>
@@ -80,9 +80,8 @@
         async getPermissions() {
             this.loadingApi = true
             this.cleanForm()
-            var formData = new FormData()
 
-            await axios.post("<?= $url_permissions ?>", formData, {
+            await axios.get("<?= $url_permissions ?>", {}, {
                 validateStatus: () => true
             }).then((res) => {
                 if (res.status !== 200) {
@@ -111,9 +110,8 @@
         async getClientPermissions() {
             this.loadingApi = true
             this.cleanForm()
-            var formData = new FormData()
 
-            await axios.post("<?= $url_client_permissions ?>", formData, {
+            await axios.get("<?= $url_client_permissions ?>", {}, {
                 validateStatus: () => true
             }).then((res) => {
                 if (res.status !== 200) {

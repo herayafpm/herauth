@@ -17,7 +17,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
         $like = [
             'username' => $data['search']['value'] ?? ''
         ];
-        $this->request->message_after = lang("Api.successRetrieveRequest", [lang("Web.master.account")]);
+        $this->request->message_after = lang("Api.successRetrieveRequest", [lang("Label.account")]);
         return $this->respond($this->datatable_get(['withDeleted' => true, 'like' => $like]), 200);
     }
 
@@ -27,12 +27,12 @@ class HeraAccount extends BaseHerauthAuthResourceApi
         $data = $this->getDataRequest();
         $rules = [
             'username' => [
-                'label'  => lang("Auth.labelUsername", [lang("Web.master.account")]),
+                'label'  => lang("Label.username")." ".lang("Label.account"),
                 'rules'  => "required|is_unique[herauth_account.username]",
                 'errors' => []
             ],
             'password' => [
-                'label'  => lang("Auth.labelPassword", [lang("Web.master.account")]),
+                'label'  => lang("Label.password")." ".lang("Label.account"),
                 'rules'  => "required|min_length[6]",
                 'errors' => []
             ],
@@ -47,9 +47,9 @@ class HeraAccount extends BaseHerauthAuthResourceApi
         ];
 
         if ($this->model->save($insertData)) {
-            return $this->respond(["status" => true, "message" => lang("Api.successAddRequest", [lang("Web.master.account")]), "data" => ['redir' => herauth_base_locale_url('master/account')]], 200);
+            return $this->respond(["status" => true, "message" => lang("Api.successAddRequest", [lang("Label.account")]), "data" => ['redir' => herauth_base_locale_url('master/account')]], 200);
         } else {
-            return $this->respond(["status" => false, "message" => lang("Api.failAddRequest", [lang("Web.master.account")]), "data" => []], 400);
+            return $this->respond(["status" => false, "message" => lang("Api.failAddRequest", [lang("Label.account")]), "data" => []], 400);
         }
     }
     public function edit($id = null)
@@ -57,17 +57,17 @@ class HeraAccount extends BaseHerauthAuthResourceApi
         herauth_grant("account.post_edit");
         $account = $this->model->withDeleted(true)->find($id);
         if (!$account) {
-            return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.account")]), "data" => []]);
+            return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.account")]), "data" => []]);
         }
         $data = $this->getDataRequest();
         $rules = [
             'username' => [
-                'label'  => lang("Auth.labelUsername", [lang("Web.master.account")]),
+                'label'  => lang("Label.username")." ".lang("Label.account"),
                 'rules'  => "required|is_unique[herauth_account.username,id,{$id}]",
                 'errors' => []
             ],
             'password' => [
-                'label'  => lang("Auth.labelPassword", [lang("Web.master.account")]),
+                'label'  => lang("Label.password")." ".lang("Label.account"),
                 'rules'  => "sometime_len[6]",
                 'errors' => []
             ],
@@ -86,9 +86,9 @@ class HeraAccount extends BaseHerauthAuthResourceApi
         }
 
         if ($this->model->update($id, $update_data)) {
-            return $this->respond(["status" => true, "message" => lang("Api.successEditRequest", [lang("Web.master.account")]), "data" => ['redir' => herauth_base_locale_url('master/account')]], 200);
+            return $this->respond(["status" => true, "message" => lang("Api.successEditRequest", [lang("Label.account")]), "data" => ['redir' => herauth_base_locale_url('master/account')]], 200);
         } else {
-            return $this->respond(["status" => false, "message" => lang("Api.failEditRequest", [lang("Web.master.account")]), "data" => []], 400);
+            return $this->respond(["status" => false, "message" => lang("Api.failEditRequest", [lang("Label.account")]), "data" => []], 400);
         }
     }
     public function delete($id = null)
@@ -109,21 +109,21 @@ class HeraAccount extends BaseHerauthAuthResourceApi
             }
             if ($delete) {
                 if (isset($data['purge'])) {
-                    $message = lang("Api.successPurgeRequest", [lang("Web.master.account")]);
+                    $message = lang("Api.successPurgeRequest", [lang("Label.account")]);
                 } else {
-                    $message = lang("Api.successDeleteRequest", [lang("Web.master.account")]);
+                    $message = lang("Api.successDeleteRequest", [lang("Label.account")]);
                 }
                 return $this->respond(["status" => true, "message" => $message, "data" => []], 200);
             } else {
                 if (isset($data['purge'])) {
-                    $message = lang("Api.failPurgeRequest", [lang("Web.master.account")]);
+                    $message = lang("Api.failPurgeRequest", [lang("Label.account")]);
                 } else {
-                    $message = lang("Api.failDeleteRequest", [lang("Web.master.account")]);
+                    $message = lang("Api.failDeleteRequest", [lang("Label.account")]);
                 }
                 return $this->respond(["status" => false, "message" => $message, "data" => []], 400);
             }
         }
-        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.account")]), "data" => []], 404);
+        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.account")]), "data" => []], 404);
     }
     public function restore($id = null)
     {
@@ -131,12 +131,12 @@ class HeraAccount extends BaseHerauthAuthResourceApi
         $account = $this->model->withDeleted(true)->find($id);
         if ($account) {
             if ($this->model->restore($id)) {
-                return $this->respond(["status" => true, "message" => lang("Api.successRestoreRequest", [lang("Web.master.account")]), "data" => []], 200);
+                return $this->respond(["status" => true, "message" => lang("Api.successRestoreRequest", [lang("Label.account")]), "data" => []], 200);
             } else {
-                return $this->respond(["status" => false, "message" => lang("Api.failRestoreRequest", [lang("Web.master.account")]), "data" => []], 400);
+                return $this->respond(["status" => false, "message" => lang("Api.failRestoreRequest", [lang("Label.account")]), "data" => []], 400);
             }
         }
-        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.account")]), "data" => []], 404);
+        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.account")]), "data" => []], 404);
     }
     public function groups($id = null)
     {
@@ -152,9 +152,9 @@ class HeraAccount extends BaseHerauthAuthResourceApi
             if (isset($data['offset'])) {
                 $offset = (int) $data['offset'];
             }
-            return $this->respond(["status" => true, "message" => lang("Api.successRetrieveRequest", [lang("Web.master.account")]), "data" => $account->getGroups($limit,$offset)], 200);
+            return $this->respond(["status" => true, "message" => lang("Api.successRetrieveRequest", [lang("Label.account")]), "data" => $account->getGroups($limit,$offset)], 200);
         }
-        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.account")]), "data" => []], 404);
+        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.account")]), "data" => []], 404);
     }
 
     public function save_group($id = null)
@@ -165,7 +165,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
         if ($account) {
             $rules = [
                 'groups' => [
-                    'label'  => lang("Web.master.group")."s",
+                    'label'  => lang("Label.groups"),
                     'rules'  => "required",
                     'errors' => []
                 ]
@@ -191,8 +191,8 @@ class HeraAccount extends BaseHerauthAuthResourceApi
                     }
                 }
             }
-            return $this->respond(["status" => true, "message" => lang("Api.successSaveGroupRequest",[lang("Web.master.account")]), "data" => []], 200);
+            return $this->respond(["status" => true, "message" => lang("Api.successSaveGroupRequest",[lang("Label.account")]), "data" => []], 200);
         }
-        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.account")]), "data" => []], 404);
+        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.account")]), "data" => []], 404);
     }
 }

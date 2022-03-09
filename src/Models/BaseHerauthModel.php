@@ -75,7 +75,11 @@ class BaseHerauthModel extends Model
 		$id = $data['id'][0];
 		$data_before = $this->withDeleted(true)->find($id);
 		if ($data_before) {
-			$data_before = $data_before->toArray() ?? [];
+			if(is_array($data_before)){
+				$data_before = $data_before[0]->toArray() ?? [];
+			}else{
+				$data_before = $data_before->toArray() ?? [];
+			}
 		}
 		$this->logDBSaveTransaction($id, $data_before, $data['data'], $jenis);
 		return $data;

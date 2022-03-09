@@ -23,6 +23,6 @@ class Herauth extends BaseConfig
     {
         parent::__construct();
         require __DIR__."/../Helpers/herauth_main_helper.php";
-        $this->herauthLangJsUrl = herauth_asset_url('lang');
+        $this->herauthLangJsUrl = herauth_base_locale_url('language');
     }
 }

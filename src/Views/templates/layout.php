@@ -62,10 +62,10 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="<?= herauth_base_locale_url('profil') ?>" class="dropdown-item">
-                            <i class="nav-icon fas fa-user"></i> <?= lang('Web.profil') ?>
+                            <i class="nav-icon fas fa-user"></i> <?= lang('Label.profil') ?>
                         </a>
                         <a href="<?= herauth_base_locale_url('logout') ?>" class="dropdown-item bg-red">
-                            <i class="nav-icon fas fa-power-off"></i> <?= lang('Web.logout') ?>
+                            <i class="nav-icon fas fa-power-off"></i> <?= lang('Label.logout') ?>
                         </a>
                     </div>
                 </li>
@@ -104,26 +104,26 @@
                             <a href="<?= herauth_base_locale_url('') ?>" class="nav-link <?= in_array($url, ['', '/dashboard']) ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    <?= lang("Web.dashboard") ?>
+                                    <?= lang("Label.dashboard") ?>
                                 </p>
                             </a>
                         </li>
                         <?php
                         $list_master_data = [
                             [
-                                'name' => lang("Web.master.group"),
+                                'name' => lang("Label.group"),
                                 'this_url' =>  'group'
                             ],
                             [
-                                'name' => lang("Web.master.permission"),
+                                'name' => lang("Label.permission"),
                                 'this_url' =>  'permission'
                             ],
                             [
-                                'name' => lang("Web.master.client"),
+                                'name' => lang("Label.client.text"),
                                 'this_url' =>  'client'
                             ],
                             [
-                                'name' => lang("Web.master.account"),
+                                'name' => lang("Label.account"),
                                 'this_url' =>  'account'
                             ],
                         ];
@@ -132,7 +132,7 @@
                             <a href="#" class="nav-link menuMasterLink <?= in_array(str_replace('/master/', '', $url), array_column($list_master_data, 'this_url')) ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    <?= lang("Web.master.data") ?>
+                                    <?= lang("Label.datatable.data") ?>
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -158,7 +158,7 @@
                             <a href="<?= herauth_base_locale_url('request_log') ?>" class="nav-link <?= in_array($url, ['/request_log']) ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-folder-open"></i>
                                 <p>
-                                    <?= lang("Web.requestLog") ?>
+                                    <?= lang("Label.requestLog") ?>
                                 </p>
                             </a>
                         </li>

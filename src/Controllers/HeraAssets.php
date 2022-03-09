@@ -8,7 +8,7 @@ class HeraAssets extends BaseHerauthController
 {
     public function file($any = false)
     {
-        $path = str_replace('herauth/assets/', '', $this->request->uri->getPath());
+        $path = str_replace('hera_assets/', '', $this->request->uri->getPath());
         $file = __DIR__ . "/../../assets/$path";
         if (file_exists($file)) {
             $ctype = mime_content_type($file);

@@ -14,12 +14,12 @@ class HeraAuth extends BaseHerauthResourceApi
     {
         $rules = [
             'username' => [
-                'label'  => lang("Auth.labelUsername"),
+                'label'  => lang("Label.username"),
                 'rules'  => 'required',
                 'errors' => []
             ],
             'password' => [
-                'label'  => lang("Auth.labelPassword"),
+                'label'  => lang("Label.password"),
                 'rules'  => 'required',
                 'errors' => []
             ],

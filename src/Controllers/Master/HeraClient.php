@@ -13,7 +13,7 @@ class HeraClient extends BaseHerauthMasterController
     {
         herauth_grant("client.view_index","page");
         $data = [
-            'page_title' => lang("Web.master.client"),
+            'page_title' => lang("Label.client.text"),
             'url_datatable' => herauth_web_url($this->root_view . "client/datatable"),
             'url_add' => herauth_base_locale_url($this->root_view . "client/add"),
             'url_edit' => herauth_base_locale_url($this->root_view . "client/edit/"),
@@ -30,7 +30,7 @@ class HeraClient extends BaseHerauthMasterController
     {
         herauth_grant("client.view_add","page");
         $data = [
-            'page_title' => lang("Web.add")." ".lang("Web.master.client"),
+            'page_title' => lang("Label.add")." ".lang("Label.client.text"),
             'url_add' => herauth_web_url($this->root_view . "client/add"),
         ];
         return $this->view("client/add", $data);
@@ -44,7 +44,7 @@ class HeraClient extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.edit")." ".lang("Web.master.client")." " . $client->name,
+            'page_title' => lang("Label.edit")." ".lang("Label.client.text")." " . $client->name,
             'client' => $client,
             'url_edit' => herauth_web_url($this->root_view . "client/edit/".$id),
         ];
@@ -60,7 +60,7 @@ class HeraClient extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.client")." ".lang("Web.master.permission")." " . $client->name,
+            'page_title' => lang("Label.client.text")." ".lang("Label.permission")." " . $client->name,
             'client' => $client,
             'url_save' => herauth_web_url($this->root_view . "client/save_permissions/".$id),
             'url_permissions' => herauth_web_url($this->root_view . "permission"),
@@ -77,7 +77,7 @@ class HeraClient extends BaseHerauthMasterController
         }
 
         $data = [
-            'page_title' => lang("Web.master.client")." ".lang("Web.master.whitelist")." " . $client->name,
+            'page_title' => lang("Label.client.text")." ".lang("Label.whitelist")." " . $client->name,
             'client' => $client,
             'url_save' => herauth_web_url($this->root_view . "client/save_whitelists/".$id),
         ];

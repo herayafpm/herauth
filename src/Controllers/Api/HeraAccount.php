@@ -14,7 +14,7 @@ class HeraAccount extends BaseHerauthResourceApi
         if($profil){
             $profil = $profil->toArray();
         }
-        return $this->respond(['status' => true,'message' => lang("Api.successRetrieveRequest",[lang("Web.master.account")]),'data' => $profil ?? []], 200);
+        return $this->respond(['status' => true,'message' => lang("Api.successRetrieveRequest",[lang("Label.account")]),'data' => $profil ?? []], 200);
     }
     public function notifications()
     {
@@ -35,6 +35,6 @@ class HeraAccount extends BaseHerauthResourceApi
             $notif_in = $data['notif_in'];
         }
         $notifications = $account->getNotifications($limit,$offset,$notif_in);
-        return $this->respond(['status' => true,'message' => lang("Api.successRetrieveRequest",[lang("Web.notifications")]),'data' => $notifications ?? []], 200);
+        return $this->respond(['status' => true,'message' => lang("Api.successRetrieveRequest",[lang("Label.notifications")]),'data' => $notifications ?? []], 200);
     }
 }

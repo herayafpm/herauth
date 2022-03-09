@@ -26,7 +26,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         } else {
             $permissions = $this->model->select("id,name,description")->findAll();
         }
-        return $this->respond(["status" => true, "message" => lang("Api.successRetrieveRequest", [lang("Web.master.permission")]), "data" => $permissions], 200);
+        return $this->respond(["status" => true, "message" => lang("Api.successRetrieveRequest", [lang("Label.permission")]), "data" => $permissions], 200);
     }
 
     public function datatable()
@@ -36,7 +36,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         $like = [
             'name' => $data['search']['value'] ?? ''
         ];
-        $this->request->message_after = lang("Api.successRetrieveRequest", [lang("Web.master.permission")]);
+        $this->request->message_after = lang("Api.successRetrieveRequest", [lang("Label.permission")]);
         return $this->respond($this->datatable_get(['withDeleted' => true, 'like' => $like]), 200);
     }
 
@@ -46,12 +46,12 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         $data = $this->getDataRequest();
         $rules = [
             'name' => [
-                'label'  => lang("Api.validation.master.name", [lang("Web.master.permission")]),
+                'label'  => lang("Label.name")." ".lang("Label.permission"),
                 'rules'  => "required|is_unique[herauth_permission.name]",
                 'errors' => []
             ],
             'must_login' => [
-                'label'  => lang("Web.master.must_login", [lang("Web.master.permission")]),
+                'label'  => lang("Label.must_login")." ".lang("Label.permission"),
                 'rules'  => "required",
                 'errors' => []
             ],
@@ -67,9 +67,9 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         ];
 
         if ($this->model->save($insertData)) {
-            return $this->respond(["status" => true, "message" => lang("Api.successAddRequest", [lang("Web.master.permission")]), "data" => ['redir' => herauth_base_locale_url('master/permission')]], 200);
+            return $this->respond(["status" => true, "message" => lang("Api.successAddRequest", [lang("Label.permission")]), "data" => ['redir' => herauth_base_locale_url('master/permission')]], 200);
         } else {
-            return $this->respond(["status" => false, "message" => lang("Api.failAddRequest", [lang("Web.master.permission")]), "data" => []], 400);
+            return $this->respond(["status" => false, "message" => lang("Api.failAddRequest", [lang("Label.permission")]), "data" => []], 400);
         }
     }
     public function edit($id = null)
@@ -77,17 +77,17 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         herauth_grant("permission.post_edit");
         $permission = $this->model->withDeleted(true)->find($id);
         if (!$permission) {
-            return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.permission")]), "data" => []]);
+            return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.permission")]), "data" => []]);
         }
         $data = $this->getDataRequest();
         $rules = [
             'name' => [
-                'label'  => lang("Api.validation.master.name", [lang("Web.master.permission")]),
+                'label'  => lang("Label.name") ." ".lang("Label.permission"),
                 'rules'  => "required|is_unique[herauth_permission.name,id,{$id}]",
                 'errors' => []
             ],
             'must_login' => [
-                'label'  => lang("Web.master.must_login", [lang("Web.master.permission")]),
+                'label'  => lang("Label.must_login") . " ".lang("Label.permission"),
                 'rules'  => "required",
                 'errors' => []
             ],
@@ -103,9 +103,9 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         ];
 
         if ($this->model->update($id, $update_data)) {
-            return $this->respond(["status" => true, "message" => lang("Api.successEditRequest", [lang("Web.master.permission")]), "data" => ['redir' => herauth_base_locale_url('master/permission')]], 200);
+            return $this->respond(["status" => true, "message" => lang("Api.successEditRequest", [lang("Label.permission")]), "data" => ['redir' => herauth_base_locale_url('master/permission')]], 200);
         } else {
-            return $this->respond(["status" => false, "message" => lang("Api.failEditRequest", [lang("Web.master.permission")]), "data" => []], 400);
+            return $this->respond(["status" => false, "message" => lang("Api.failEditRequest", [lang("Label.permission")]), "data" => []], 400);
         }
     }
     public function delete($id = null)
@@ -126,21 +126,21 @@ class HeraPermission extends BaseHerauthAuthResourceApi
             }
             if ($delete) {
                 if (isset($data['purge'])) {
-                    $message = lang("Api.successPurgeRequest", [lang("Web.master.permission")]);
+                    $message = lang("Api.successPurgeRequest", [lang("Label.permission")]);
                 } else {
-                    $message = lang("Api.successDeleteRequest", [lang("Web.master.permission")]);
+                    $message = lang("Api.successDeleteRequest", [lang("Label.permission")]);
                 }
                 return $this->respond(["status" => true, "message" => $message, "data" => []], 200);
             } else {
                 if (isset($data['purge'])) {
-                    $message = lang("Api.failPurgeRequest", [lang("Web.master.permission")]);
+                    $message = lang("Api.failPurgeRequest", [lang("Label.permission")]);
                 } else {
-                    $message = lang("Api.failDeleteRequest", [lang("Web.master.permission")]);
+                    $message = lang("Api.failDeleteRequest", [lang("Label.permission")]);
                 }
                 return $this->respond(["status" => false, "message" => $message, "data" => []], 400);
             }
         }
-        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.permission")]), "data" => []], 404);
+        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.permission")]), "data" => []], 404);
     }
     public function restore($id = null)
     {
@@ -148,11 +148,11 @@ class HeraPermission extends BaseHerauthAuthResourceApi
         $permission = $this->model->withDeleted(true)->find($id);
         if ($permission) {
             if ($this->model->restore($id)) {
-                return $this->respond(["status" => true, "message" => lang("Api.successRestoreRequest", [lang("Web.master.permission")]), "data" => []], 200);
+                return $this->respond(["status" => true, "message" => lang("Api.successRestoreRequest", [lang("Label.permission")]), "data" => []], 200);
             } else {
-                return $this->respond(["status" => false, "message" => lang("Api.failRestoreRequest", [lang("Web.master.permission")]), "data" => []], 400);
+                return $this->respond(["status" => false, "message" => lang("Api.failRestoreRequest", [lang("Label.permission")]), "data" => []], 400);
             }
         }
-        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Web.master.permission")]), "data" => []], 404);
+        return $this->respond(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.permission")]), "data" => []], 404);
     }
 }
