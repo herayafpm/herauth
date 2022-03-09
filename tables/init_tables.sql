@@ -19,12 +19,23 @@ CREATE TABLE herauth_account_model (
 	deleted_at datetime NULL
 );
 
+
 -- mysql
 CREATE TABLE herauth_account (
     id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
     username varchar(255) NULL,
     password varchar(255) NULL,
     model_name varchar(255) NULL,
+    created_at datetime DEFAULT NOW(),
+	updated_at datetime DEFAULT NOW(),
+	deleted_at datetime NULL
+);
+
+-- mysql
+CREATE TABLE herauth_user (
+    id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id_account int NULL,
+    name varchar(255) NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
 	deleted_at datetime NULL
@@ -155,12 +166,3 @@ CREATE TABLE herauth_database_log (
 	deleted_at datetime NULL
 );
 
--- mysql
-CREATE TABLE herauth_user (
-    id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    username varchar(255) NULL,
-    name varchar(255) NULL,
-    created_at datetime DEFAULT NOW(),
-	updated_at datetime DEFAULT NOW(),
-	deleted_at datetime NULL
-);

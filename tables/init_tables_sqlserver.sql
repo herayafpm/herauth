@@ -30,6 +30,15 @@ CREATE TABLE [herauth_account] (
 	[deleted_at] [datetime] NULL
 );
 
+CREATE TABLE [herauth_user] (
+    [id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+    [id_account] [varchar](255) NULL,
+    [name] [varchar](255) NULL,
+    [created_at] [datetime] DEFAULT GETDATE(),
+	[updated_at] [datetime] DEFAULT GETDATE(),
+	[deleted_at] [datetime] NULL
+);
+
 -- sqlserver
 CREATE TABLE [herauth_account_group] (
     [id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -146,11 +155,3 @@ CREATE TABLE [herauth_database_log] (
 	[deleted_at] [datetime] NULL
 );
 
-CREATE TABLE [herauth_user] (
-    [id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
-    [username] [varchar](255) NULL,
-    [name] [varchar](255) NULL,
-    [created_at] [datetime] DEFAULT GETDATE(),
-	[updated_at] [datetime] DEFAULT GETDATE(),
-	[deleted_at] [datetime] NULL
-);

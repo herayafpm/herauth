@@ -15,6 +15,12 @@ INSERT INTO herauth_account (username,password,model_name) VALUES
 -- admin (2)
 ('admin','$2y$10$T3VGpRktNJrJzVzwTsT0Z.ixlxcaolAbMpQaAbUKrdaxknBi8IRJq','pengguna');
 
+INSERT INTO herauth_user (id_account,name) VALUES 
+-- superadmin (1)
+(1,'Super Admin'),
+-- admin (2)
+(2,'Admin');
+
 INSERT INTO herauth_account_group (account_id,group_id) VALUES 
 -- superadmin (superadmin,admin)
 (1,1), 

@@ -45,7 +45,11 @@ class HerauthAccountEntity extends AccountEntity
 		if(!$model){
 			return null;
 		}
-		return $model->getProfil($this->username);
+		$profil = $model->getProfil($this->username);
+		if(!$profil){
+			$profil = $model->getProfil($this->id);
+		}
+		return $profil;
 	}
 
 	public function getGroups($limit = -1, $offset = 0)
