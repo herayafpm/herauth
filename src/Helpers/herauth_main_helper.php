@@ -40,7 +40,7 @@ if (!function_exists('herauth_api_url')) {
 if (!function_exists('asset_url')) {
     function asset_url($url = '')
     {
-        return base_url('core_assets/' . $url);
+        return base_url('assets/' . $url);
     }
 }
 if (!function_exists('base_locale_url')) {
