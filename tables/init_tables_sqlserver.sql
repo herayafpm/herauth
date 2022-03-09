@@ -32,11 +32,16 @@ CREATE TABLE [herauth_account] (
 
 CREATE TABLE [herauth_user] (
     [id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
-    [id_account] [varchar](255) NULL,
+    [account_id] [varchar](255) NULL,
     [name] [varchar](255) NULL,
     [created_at] [datetime] DEFAULT GETDATE(),
 	[updated_at] [datetime] DEFAULT GETDATE(),
-	[deleted_at] [datetime] NULL
+	[deleted_at] [datetime] NULL,
+    CONSTRAINT fk_account_id
+        FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 -- sqlserver
@@ -46,7 +51,17 @@ CREATE TABLE [herauth_account_group] (
     [group_id] [int] NULL,
     [created_at] [datetime] DEFAULT GETDATE(),
 	[updated_at] [datetime] DEFAULT GETDATE(),
-	[deleted_at] [datetime] NULL
+	[deleted_at] [datetime] NULL,
+    CONSTRAINT fk_account_id
+        FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_group_id
+        FOREIGN KEY (group_id)
+        REFERENCES herauth_group (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 -- sqlserver
@@ -68,7 +83,17 @@ CREATE TABLE [herauth_group_permission] (
     [permission_id] [int] NULL,
     [created_at] [datetime] DEFAULT GETDATE(),
 	[updated_at] [datetime] DEFAULT GETDATE(),
-	[deleted_at] [datetime] NULL
+	[deleted_at] [datetime] NULL,
+    CONSTRAINT fk_group_id
+        FOREIGN KEY (group_id)
+        REFERENCES herauth_group (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_permission_id
+        FOREIGN KEY (permission_id)
+        REFERENCES herauth_permission (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE [herauth_account_permission] (
@@ -77,7 +102,17 @@ CREATE TABLE [herauth_account_permission] (
     [permission_id] [int] NULL,
     [created_at] [datetime] DEFAULT GETDATE(),
 	[updated_at] [datetime] DEFAULT GETDATE(),
-	[deleted_at] [datetime] NULL
+	[deleted_at] [datetime] NULL,
+    CONSTRAINT fk_account_id
+        FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_permission_id
+        FOREIGN KEY (permission_id)
+        REFERENCES herauth_permission (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE [herauth_request_log] (
@@ -112,9 +147,14 @@ CREATE TABLE [herauth_client_whitelist] (
     [whitelist_name] [varchar](255) NULL,
     [whitelist_type] [varchar](255) NULL,
     [whitelist_key] [varchar](255) NULL,
-    [created_at] [datetime] DEFAULT NOW(),
-	[updated_at] [datetime] DEFAULT NOW(),
-	[deleted_at] [datetime] NULL
+    [created_at] [datetime] DEFAULT GETDATE(),
+	[updated_at] [datetime] DEFAULT GETDATE(),
+	[deleted_at] [datetime] NULL,
+    CONSTRAINT fk_client_id
+        FOREIGN KEY (client_id)
+        REFERENCES herauth_client (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE [herauth_client_permission] (
@@ -123,7 +163,17 @@ CREATE TABLE [herauth_client_permission] (
     [permission_id] [int] NULL,
     [created_at] [datetime] DEFAULT GETDATE(),
 	[updated_at] [datetime] DEFAULT GETDATE(),
-	[deleted_at] [datetime] NULL
+	[deleted_at] [datetime] NULL,
+    CONSTRAINT fk_client_id
+        FOREIGN KEY (client_id)
+        REFERENCES herauth_client (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_permission_id
+        FOREIGN KEY (permission_id)
+        REFERENCES herauth_permission (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE [herauth_notifications] (
@@ -136,7 +186,12 @@ CREATE TABLE [herauth_notifications] (
     [notif_app] [varchar](255) NULL,
     [notif_created_at] [datetime] DEFAULT GETDATE(),
 	[notif_updated_at] [datetime] DEFAULT GETDATE(),
-	[notif_deleted_at] [datetime] NULL
+	[notif_deleted_at] [datetime] NULL,
+    CONSTRAINT fk_account_id
+        FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE [herauth_database_log] (

@@ -34,11 +34,15 @@ CREATE TABLE herauth_account (
 -- mysql
 CREATE TABLE herauth_user (
     id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    id_account int NULL,
+    account_id int NULL,
     name varchar(255) NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
-	deleted_at datetime NULL
+	deleted_at datetime NULL,
+    FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 -- mysql
@@ -48,7 +52,15 @@ CREATE TABLE herauth_account_group (
     group_id int NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
-	deleted_at datetime NULL
+	deleted_at datetime NULL,
+    FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (group_id)
+        REFERENCES herauth_group (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 
@@ -70,7 +82,15 @@ CREATE TABLE herauth_group_permission (
     permission_id int NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
-	deleted_at datetime NULL
+	deleted_at datetime NULL,
+    FOREIGN KEY (permission_id)
+        REFERENCES herauth_permission (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (group_id)
+        REFERENCES herauth_group (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 -- mysql
@@ -80,7 +100,15 @@ CREATE TABLE herauth_account_permission (
     permission_id int NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
-	deleted_at datetime NULL
+	deleted_at datetime NULL,
+    FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (permission_id)
+        REFERENCES herauth_permission (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 
@@ -121,7 +149,11 @@ CREATE TABLE herauth_client_whitelist (
     whitelist_key varchar(255) NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
-	deleted_at datetime NULL
+	deleted_at datetime NULL,
+    FOREIGN KEY (client_id)
+        REFERENCES herauth_client (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 -- mysql
@@ -131,7 +163,15 @@ CREATE TABLE herauth_client_permission (
     permission_id int NULL,
     created_at datetime DEFAULT NOW(),
 	updated_at datetime DEFAULT NOW(),
-	deleted_at datetime NULL
+	deleted_at datetime NULL,
+    FOREIGN KEY (client_id)
+        REFERENCES herauth_client (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (permission_id)
+        REFERENCES herauth_permission (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 
@@ -146,7 +186,11 @@ CREATE TABLE herauth_notifications (
     notif_app varchar(255) NULL,
     notif_created_at datetime DEFAULT NOW(),
 	notif_updated_at datetime DEFAULT NOW(),
-	notif_deleted_at datetime NULL
+	notif_deleted_at datetime NULL,
+    FOREIGN KEY (account_id)
+        REFERENCES herauth_account (id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 -- mysql
