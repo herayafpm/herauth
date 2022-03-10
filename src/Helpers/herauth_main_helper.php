@@ -110,7 +110,7 @@ if (!function_exists('herauth_locale_text')) {
 if (!function_exists('herauth_grant')) {
     function herauth_grant($perm, $type = 'api',$args = [])
     {
-        return service('herauth',$args)->grant($perm,$type,$args);
+        return service('herauth')->grant($perm,$type,$args);
     }
 }
 if (!function_exists('herauth_grant_group')) {

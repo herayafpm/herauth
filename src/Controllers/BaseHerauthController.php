@@ -144,4 +144,15 @@ class BaseHerauthController extends Controller
         }
     }
 
+    public function herauth_grant_group($group,$type = 'api',$args = [])
+    {
+        $args['data'] = $this->data;
+        herauth_grant_group($group,$type,$args);
+    }
+    public function herauth_grant($perm,$type = 'api',$args = [])
+    {
+        $args['data'] = $this->data;
+        herauth_grant($perm,$type,$args);
+    }
+
 }

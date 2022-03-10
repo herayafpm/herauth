@@ -7,7 +7,7 @@ class HeraAccount extends BaseHerauthResourceApi
 
     public function profil()
     {
-        herauth_grant("user_account.get_profil");
+        $this->herauth_grant("user_account.get_profil");
         $herauth = service('Herauth');
         $account = $herauth->getAccount();
         $profil = $account->profil;
@@ -18,7 +18,7 @@ class HeraAccount extends BaseHerauthResourceApi
     }
     public function notifications()
     {
-        herauth_grant("user_account.get_notifications");
+        $this->herauth_grant("user_account.get_notifications");
         $herauth = service('Herauth');
         $account = $herauth->getAccount();
         $data = $this->getDataRequest();

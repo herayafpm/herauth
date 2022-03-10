@@ -2,11 +2,15 @@
 
 namespace Raydragneel\Herauth\Entities;
 
+use Raydragneel\Herauth\Models\HerauthAccountModel;
+
 class HerauthUserEntity extends AccountEntity
 {
+	protected $account_model = null;
 	public function __construct(array $data = null)
 	{
 		parent::__construct($data);
+		$this->account_model = model(HerauthAccountModel::class);
 	}
 	public $password_view = "";
 	protected $datamap = [];
@@ -21,6 +25,14 @@ class HerauthUserEntity extends AccountEntity
 	{
 		$this->attributes['password'] = password_hash($pass, PASSWORD_DEFAULT);
 		$this->password_view = $pass;
+		return $this;
+	}
+
+	public function withAccount()
+	{
+		if(!empty($this->id)){
+			$this->account = $this->account_model->find($this->id);
+		}
 		return $this;
 	}
 }

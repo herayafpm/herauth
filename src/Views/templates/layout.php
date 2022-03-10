@@ -108,6 +108,7 @@
                                 </p>
                             </a>
                         </li>
+                        <?php if($_account->inGroup(['superadmin'])):?>
                         <?php
                         $list_master_data = [
                             [
@@ -154,6 +155,7 @@
                                 ?>
                             </ul>
                         </li>
+                        <?php endif?>
                         <li class="nav-item">
                             <a href="<?= herauth_base_locale_url('request_log') ?>" class="nav-link <?= in_array($url, ['/request_log']) ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-folder-open"></i>

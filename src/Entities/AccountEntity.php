@@ -106,7 +106,7 @@ class AccountEntity extends BaseHerauthEntity
 		}
 
 		// Otherwise, pull it from the database.
-		$p = $this->permission_model->asObject()->where('name', $permission)->first();
+		$p = $this->permission_model->asObject()->where('name', $permission)->withDeleted(false)->first();
 
 		if (!$p) {
 			$this->error = lang('Api.account.permissionNotFound', [$permission]);
@@ -119,27 +119,31 @@ class AccountEntity extends BaseHerauthEntity
 
 	public function groups()
 	{
-		return $this->account_group_model->join("herauth_group group", "herauth_account_group.group_id = group.id")->where('account_id', $this->id)->findColumn('name');
+		return $this->account_group_model->join("herauth_group group", "herauth_account_group.group_id = group.id")->where('account_id', $this->id)->withDeleted(false)->findColumn('name');
 	}
 
 	public function addGroup($name)
 	{
 		$group = $this->group_model->findGroupByName($name);
 		if($group){
-			return $this->account_group_model->save([
-				'account_id' => $this->id,
-				'group_id' => $group->id
-			]);
+			$account_group = $this->account_group_model->select("herauth_account_group.id")->join("herauth_group group", "herauth_account_group.group_id = group.id")->where(['herauth_account_group.account_id' => $this->id,'group.name' => $name])->first();
+			if($account_group){
+				return $this->account_group_model->restore($account_group->id);
+			}else{
+				return $this->account_group_model->save([
+					'account_id' => $this->id,
+					'group_id' => $group->id
+				]);
+			}
 		}
 		return false;
 	}
 	public function deleteGroup($name)
 	{
-		$account_group = $this->account_group_model->join("herauth_group group", "herauth_account_group.group_id = group.id")->where(['account_id' => $this->id,'name' => $name])->first();
+		$account_group = $this->account_group_model->select("herauth_account_group.id")->join("herauth_group group", "herauth_account_group.group_id = group.id")->where(['herauth_account_group.account_id' => $this->id,'group.name' => $name])->first();
 		if($account_group){
 			return $this->account_group_model->delete($account_group->id);
 		}
 		return false;
 	}
-
 }

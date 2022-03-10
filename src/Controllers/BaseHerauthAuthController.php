@@ -23,7 +23,7 @@ class BaseHerauthAuthController extends BaseHerauthController
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
-        herauth_grant_group('herauth','page');
+        $this->herauth_grant_group('herauth','page');
     }
 
 }

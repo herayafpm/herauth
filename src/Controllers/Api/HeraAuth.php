@@ -45,7 +45,7 @@ class HeraAuth extends BaseHerauthResourceApi
         // if ($throttler->check($key_throttler, 3, MINUTE) === false) {
         //     return $this->response->setStatusCode(429)->setJSON(["status" => false, "message" => lang("Api.tooManyAttemptRequest"), "data" => []]);
         // }
-        herauth_grant("auth.login");
+        $this->herauth_grant("auth.login");
         try {
             $rules = $this->rules_login();
         } catch (\DomainException $th) {

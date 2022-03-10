@@ -11,6 +11,6 @@ class BaseHerauthAuthResourceApi extends BaseHerauthResourceApi
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
-        herauth_grant_group('herauth');
+        $this->herauth_grant_group('herauth');
     }
 }

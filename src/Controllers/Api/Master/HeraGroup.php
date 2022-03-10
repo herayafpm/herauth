@@ -14,7 +14,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
 
     public function index()
     {
-        herauth_grant("group.get_groups");
+        $this->herauth_grant("group.get_groups");
         $data = $this->getDataRequest();
         $limit = -1;
         $offset = 0;
@@ -33,7 +33,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
     }
     public function datatable()
     {
-        herauth_grant("group.post_datatable");
+        $this->herauth_grant("group.post_datatable");
         $data = $this->getDataRequest();
         $like = [
             'name' => $data['search']['value'] ?? ''
@@ -44,7 +44,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
 
     public function add()
     {
-        herauth_grant("group.post_add");
+        $this->herauth_grant("group.post_add");
         $data = $this->getDataRequest();
         $rules = [
             'name' => [
@@ -70,7 +70,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
     }
     public function edit($id = null)
     {
-        herauth_grant("group.post_edit");
+        $this->herauth_grant("group.post_edit");
         $group = $this->model->withDeleted(true)->find($id);
         if (!$group) {
             return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.group")]), "data" => []]);
@@ -102,10 +102,10 @@ class HeraGroup extends BaseHerauthAuthResourceApi
     {
         $data = $this->getDataRequest();
         if (isset($data['purge'])) {
-            herauth_grant("group.post_purge");
+            $this->herauth_grant("group.post_purge");
             $group = $this->model->where(['name !=' => 'superadmin'])->withDeleted(true)->find($id);
         } else {
-            herauth_grant("group.post_delete");
+            $this->herauth_grant("group.post_delete");
             $group = $this->model->where(['name !=' => 'superadmin'])->find($id);
         }
         if ($group) {
@@ -134,7 +134,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
     }
     public function restore($id = null)
     {
-        herauth_grant("group.post_restore");
+        $this->herauth_grant("group.post_restore");
         $group = $this->model->withDeleted(true)->find($id);
         if ($group) {
             if ($this->model->restore($id)) {
@@ -147,7 +147,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
     }
     public function accounts($id = null)
     {
-        herauth_grant("group.get_accounts");
+        $this->herauth_grant("group.get_accounts");
         $group = $this->model->withDeleted(true)->find($id);
         if ($group) {
             $account_group_model = model(HerauthAccountGroupModel::class);
@@ -172,7 +172,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
 
     public function delete_account_group($id = null)
     {
-        herauth_grant("group.post_delete_account_group");
+        $this->herauth_grant("group.post_delete_account_group");
         $rules = [
             'username' => [
                 'label'  => lang("Label.username"),
@@ -205,7 +205,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
     }
     public function add_account_group($id = null)
     {
-        herauth_grant("group.post_add_account_group");
+        $this->herauth_grant("group.post_add_account_group");
         $data = $this->getDataRequest();
         $group = $this->model->withDeleted(true)->find($id);
         if ($group) {
@@ -246,7 +246,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
 
     public function permissions($id = null)
     {
-        herauth_grant("group.get_permissions");
+        $this->herauth_grant("group.get_permissions");
         $group = $this->model->withDeleted(true)->find($id);
         if ($group) {
             $data = $this->getDataRequest();
@@ -266,7 +266,7 @@ class HeraGroup extends BaseHerauthAuthResourceApi
 
     public function save_permissions($id = null)
     {
-        herauth_grant("group.post_save_permissions");
+        $this->herauth_grant("group.post_save_permissions");
         $data = $this->getDataRequest();
         $group = $this->model->withDeleted(true)->find($id);
         if ($group) {

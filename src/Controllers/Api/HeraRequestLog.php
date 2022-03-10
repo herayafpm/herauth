@@ -10,7 +10,7 @@ class HeraRequestLog extends BaseHerauthAuthResourceApi
 
     public function datatable()
     {
-        herauth_grant("request_log.post_datatable");
+        $this->herauth_grant("request_log.post_datatable");
         $data = $this->getDataRequest();
         $like = [];
         $orLike = [];

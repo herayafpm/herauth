@@ -11,7 +11,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
 
     public function index()
     {
-        herauth_grant("permission.get_permissions");
+        $this->herauth_grant("permission.get_permissions");
         $data = $this->getDataRequest();
         $limit = -1;
         $offset = 0;
@@ -31,7 +31,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
 
     public function datatable()
     {
-        herauth_grant("permission.post_datatable");
+        $this->herauth_grant("permission.post_datatable");
         $data = $this->getDataRequest();
         $like = [
             'name' => $data['search']['value'] ?? ''
@@ -42,7 +42,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
 
     public function add()
     {
-        herauth_grant("permission.post_add");
+        $this->herauth_grant("permission.post_add");
         $data = $this->getDataRequest();
         $rules = [
             'name' => [
@@ -51,7 +51,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
                 'errors' => []
             ],
             'must_login' => [
-                'label'  => lang("Label.must_login")." ".lang("Label.permission"),
+                'label'  => lang("Label.mustLogin")." ".lang("Label.permission"),
                 'rules'  => "required",
                 'errors' => []
             ],
@@ -74,7 +74,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
     }
     public function edit($id = null)
     {
-        herauth_grant("permission.post_edit");
+        $this->herauth_grant("permission.post_edit");
         $permission = $this->model->withDeleted(true)->find($id);
         if (!$permission) {
             return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.permission")]), "data" => []]);
@@ -87,7 +87,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
                 'errors' => []
             ],
             'must_login' => [
-                'label'  => lang("Label.must_login") . " ".lang("Label.permission"),
+                'label'  => lang("Label.mustLogin") . " ".lang("Label.permission"),
                 'rules'  => "required",
                 'errors' => []
             ],
@@ -112,10 +112,10 @@ class HeraPermission extends BaseHerauthAuthResourceApi
     {
         $data = $this->getDataRequest();
         if (isset($data['purge'])) {
-            herauth_grant("permission.post_purge");
+            $this->herauth_grant("permission.post_purge");
             $permission = $this->model->withDeleted(true)->find($id);
         } else {
-            herauth_grant("permission.post_delete");
+            $this->herauth_grant("permission.post_delete");
             $permission = $this->model->find($id);
         }
         if ($permission) {
@@ -144,7 +144,7 @@ class HeraPermission extends BaseHerauthAuthResourceApi
     }
     public function restore($id = null)
     {
-        herauth_grant("permission.post_restore");
+        $this->herauth_grant("permission.post_restore");
         $permission = $this->model->withDeleted(true)->find($id);
         if ($permission) {
             if ($this->model->restore($id)) {

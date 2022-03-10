@@ -11,7 +11,7 @@ class HeraPermission extends BaseHerauthMasterController
 
     public function index()
     {
-        herauth_grant('permission.view_index','page');
+        $this->herauth_grant('permission.view_index','page');
         $data = [
             'page_title' => lang("Label.permission"),
             'url_datatable' => herauth_web_url($this->root_view . "permission/datatable"),
@@ -25,7 +25,7 @@ class HeraPermission extends BaseHerauthMasterController
 
     public function add()
     {
-        herauth_grant('permission.view_add','page');
+        $this->herauth_grant('permission.view_add','page');
         $data = [
             'page_title' => lang("Label.add")." ".lang("Label.permission"),
             'url_add' => herauth_web_url($this->root_view . "permission/add"),
@@ -34,7 +34,7 @@ class HeraPermission extends BaseHerauthMasterController
     }
     public function edit($id = null)
     {
-        herauth_grant('permission.view_edit','page');
+        $this->herauth_grant('permission.view_edit','page');
         $permission = $this->model->withDeleted(true)->find($id);
         if (!$permission) {
             throw new PageNotFoundException();

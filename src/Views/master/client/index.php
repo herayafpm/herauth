@@ -19,7 +19,7 @@
                             <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
                             <th><?= lang("Label.name") ?></th>
                             <th><?= lang("Label.client.expired") ?></th>
-                            <th><?= lang("Label.client.hit_limit") ?></th>
+                            <th><?= lang("Label.client.hitLimit") ?></th>
                             <th><?= lang("Label.datatable.updatedAt") ?></th>
                             <th width="100"><?= lang("Label.datatable.action") ?></th>
                         </tr>
@@ -31,7 +31,7 @@
                             <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
                             <th><?= lang("Label.name") ?></th>
                             <th><?= lang("Label.client.expired") ?></th>
-                            <th><?= lang("Label.client.hit_limit") ?></th>
+                            <th><?= lang("Label.client.hitLimit") ?></th>
                             <th><?= lang("Label.datatable.updatedAt") ?></th>
                             <th width="100"><?= lang("Label.datatable.action") ?></th>
                         </tr>

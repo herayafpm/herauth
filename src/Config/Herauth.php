@@ -3,6 +3,7 @@
 namespace Raydragneel\Herauth\Config;
 
 use CodeIgniter\Config\BaseConfig;
+use Raydragneel\Herauth\Entities\HerauthUserEntity;
 
 class Herauth extends BaseConfig
 {
@@ -18,6 +19,7 @@ class Herauth extends BaseConfig
     public $herauthLangJsUrl = '';
     public $mainLangJsUrl = '';
     public $unauthorizedPageView = 'errors/unauthorized';
+    public $userEntityClass = HerauthUserEntity::class;
 
     public function __construct()
     {

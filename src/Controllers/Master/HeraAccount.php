@@ -11,7 +11,7 @@ class HeraAccount extends BaseHerauthMasterController
 
     public function index()
     {
-        herauth_grant('account.view_index','page');
+        $this->herauth_grant('account.view_index','page');
         $data = [
             'page_title' => lang("Label.account"),
             'url_datatable' => herauth_web_url($this->root_view . "account/datatable"),
@@ -26,7 +26,7 @@ class HeraAccount extends BaseHerauthMasterController
 
     public function add()
     {
-        herauth_grant('account.view_add','page');
+        $this->herauth_grant('account.view_add','page');
         $data = [
             'page_title' => lang("Label.add")." ".lang("Label.account"),
             'url_add' => herauth_web_url($this->root_view . "account/add"),
@@ -35,7 +35,7 @@ class HeraAccount extends BaseHerauthMasterController
     }
     public function edit($id = null)
     {
-        herauth_grant('account.view_edit','page');
+        $this->herauth_grant('account.view_edit','page');
         $account = $this->model->withDeleted(true)->find($id);
         if (!$account) {
             throw new PageNotFoundException();
@@ -49,7 +49,7 @@ class HeraAccount extends BaseHerauthMasterController
     }
     public function group($id = null)
     {
-        herauth_grant('account.view_group','page');
+        $this->herauth_grant('account.view_group','page');
         $account = $this->model->withDeleted(true)->find($id);
         if (!$account) {
             throw new PageNotFoundException();

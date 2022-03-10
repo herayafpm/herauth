@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="hit_limit"><?= lang('Label.client.hit_limit') ?> (<?= lang('Label.optional') ?>)</label>
-                    <input type="number" min="0" class="form-control" :class="errorsApi.hit_limit !== undefined?'is-invalid':''" name="hit_limit" v-model="hit_limit" placeholder="<?= lang('Label.client.hit_limit') ?> (<?= lang('Label.optional') ?>)">
+                    <label for="hit_limit"><?= lang('Label.client.hitLimit') ?> (<?= lang('Label.optional') ?>)</label>
+                    <input type="number" min="0" class="form-control" :class="errorsApi.hit_limit !== undefined?'is-invalid':''" name="hit_limit" v-model="hit_limit" placeholder="<?= lang('Label.client.hitLimit') ?> (<?= lang('Label.optional') ?>)">
                     <div class="invalid-feedback">
                         {{errorsApi.hit_limit}}
                     </div>

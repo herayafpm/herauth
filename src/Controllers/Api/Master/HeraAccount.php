@@ -12,7 +12,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
 
     public function datatable()
     {
-        herauth_grant("account.post_datatable");
+        $this->herauth_grant("account.post_datatable");
         $data = $this->getDataRequest();
         $like = [
             'username' => $data['search']['value'] ?? ''
@@ -23,7 +23,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
 
     public function add()
     {
-        herauth_grant("account.post_add");
+        $this->herauth_grant("account.post_add");
         $data = $this->getDataRequest();
         $rules = [
             'username' => [
@@ -54,7 +54,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
     }
     public function edit($id = null)
     {
-        herauth_grant("account.post_edit");
+        $this->herauth_grant("account.post_edit");
         $account = $this->model->withDeleted(true)->find($id);
         if (!$account) {
             return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.account")]), "data" => []]);
@@ -95,10 +95,10 @@ class HeraAccount extends BaseHerauthAuthResourceApi
     {
         $data = $this->getDataRequest();
         if (isset($data['purge'])) {
-            herauth_grant("account.post_purge");
+            $this->herauth_grant("account.post_purge");
             $account = $this->model->where(['username !=' => 'admin11'])->withDeleted(true)->find($id);
         } else {
-            herauth_grant("account.post_delete");
+            $this->herauth_grant("account.post_delete");
             $account = $this->model->where(['username !=' => 'admin11'])->find($id);
         }
         if ($account) {
@@ -127,7 +127,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
     }
     public function restore($id = null)
     {
-        herauth_grant("account.post_restore");
+        $this->herauth_grant("account.post_restore");
         $account = $this->model->withDeleted(true)->find($id);
         if ($account) {
             if ($this->model->restore($id)) {
@@ -140,7 +140,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
     }
     public function groups($id = null)
     {
-        herauth_grant("account.get_groups");
+        $this->herauth_grant("account.get_groups");
         $account = $this->model->withDeleted(true)->find($id);
         if ($account) {
             $data = $this->getDataRequest();
@@ -159,7 +159,7 @@ class HeraAccount extends BaseHerauthAuthResourceApi
 
     public function save_group($id = null)
     {
-        herauth_grant("account.post_save_group");
+        $this->herauth_grant("account.post_save_group");
         $data = $this->getDataRequest();
         $account = $this->model->withDeleted(true)->find($id);
         if ($account) {

@@ -160,7 +160,15 @@ class BaseHerauthModel extends Model
 		$builder->orderBy($order, $ordered);
 
 		if (isset($params['select'])) {
-			$builder->select($params['select']);
+            if(is_array($params['select'])){
+                $selects = [];
+                foreach ($params['select'] as $value) {
+                    array_push($selects,$this->filterData($value));
+                }
+                $builder->select(implode(",",$selects));
+            }else{
+                $builder->select($params['select']);
+            }
 		} else {
 			$builder->select("{$this->table}.*");
 		}
@@ -208,7 +216,15 @@ class BaseHerauthModel extends Model
 		$builder = $this;
 
 		if (isset($params['select'])) {
-			$builder->select($params['select']);
+            if(is_array($params['select'])){
+                $selects = [];
+                foreach ($params['select'] as $value) {
+                    array_push($selects,$this->filterData($value));
+                }
+                $builder->select(implode(",",$selects));
+            }else{
+                $builder->select($params['select']);
+            }
 		} else {
 			$builder->select("{$this->table}.*");
 		}

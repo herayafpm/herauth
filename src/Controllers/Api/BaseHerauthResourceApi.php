@@ -19,6 +19,9 @@ class BaseHerauthResourceApi extends ResourceController
     {
         parent::initController($request, $response, $logger);
         $this->session = service('session');
+        $this->_account = service('herauth')->getAccount();
+        $this->data['_account'] = $this->_account;
+        $this->data['_session'] = $this->session;
     }
     protected function validate($rules, array $messages = []): bool
     {
@@ -126,5 +129,16 @@ class BaseHerauthResourceApi extends ResourceController
             'data' => $sql_data
         ];
         return $callback;
+    }
+
+    public function herauth_grant_group($group,$type = 'api',$args = [])
+    {
+        $args['data'] = $this->data;
+        herauth_grant_group($group,$type,$args);
+    }
+    public function herauth_grant($perm,$type = 'api',$args = [])
+    {
+        $args['data'] = $this->data;
+        herauth_grant($perm,$type,$args);
     }
 }

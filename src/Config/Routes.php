@@ -17,6 +17,7 @@ $routes->group('herauth',function($routes){
     $routes->setDefaultNamespace('Raydragneel\Herauth\Controllers');
     $routes->group('', function ($routes) {
         $routes->get('/', 'HeraHome::redirLocale',['priority' => 1]);
+        $routes->get('{locale}/language','Language::lang');
         $routes->group('{locale}', ['filter' => 'auth_filter'], function ($routes) {
             $routes->get('logout','HeraAuth::logout');
             $routes->get('login','HeraAuth::login');
@@ -51,7 +52,6 @@ $routes->group('herauth',function($routes){
             $routes->setDefaultNamespace('Raydragneel\Herauth\Controllers');
             $routes->get('request_log','HeraRequestLog::index');
             $routes->get('/','HeraHome::index');
-            $routes->get('language','HeraHome::language');
             // $routes->get('(:any)','HeraHome::index/$1');
         });
     });

@@ -4,6 +4,7 @@ namespace Raydragneel\Herauth\Entities;
 
 use Raydragneel\Herauth\Entities\AccountEntity;
 use Raydragneel\Herauth\Models\HerauthAccountGroupModel;
+use Raydragneel\Herauth\Models\HerauthAccountModel;
 use Raydragneel\Herauth\Models\HerauthAccountModelModel;
 use Raydragneel\Herauth\Models\HerauthNotificationsModel;
 
@@ -12,12 +13,14 @@ class HerauthAccountEntity extends AccountEntity
 	protected $account_group_model = null;
 	protected $account_model_model = null;
 	protected $notifications_model = null;
+	protected $account_model = null;
 	public function __construct(array $data = null)
 	{
 		parent::__construct($data);
 		$this->account_group_model = model(HerauthAccountGroupModel::class);
 		$this->account_model_model = model(HerauthAccountModelModel::class);
 		$this->notifications_model = model(HerauthNotificationsModel::class);
+		$this->account_model = model(HerauthAccountModel::class);
 	}
 	public $password_view = "";
 	protected $datamap = [];
@@ -33,6 +36,15 @@ class HerauthAccountEntity extends AccountEntity
 		$this->attributes['password'] = password_hash($pass, PASSWORD_DEFAULT);
 		$this->password_view = $pass;
 		return $this;
+	}
+
+	public function changeData($updated = [])
+	{
+		$data = [];
+		foreach ($updated as $update) {
+			$data[$update] = $this->{$update};
+		}
+		return $this->account_model->update($this->id,$data);
 	}
 
 	public function getProfil()

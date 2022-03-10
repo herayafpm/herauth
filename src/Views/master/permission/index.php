@@ -19,7 +19,7 @@
                             <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
                             <th><?= lang("Label.name") ?></th>
                             <th><?= lang("Label.description") ?></th>
-                            <th><?= lang("Label.must_login") ?></th>
+                            <th><?= lang("Label.mustLogin") ?></th>
                             <th><?= lang("Label.datatable.updatedAt") ?></th>
                             <th width="100"><?= lang("Label.datatable.action") ?></th>
                         </tr>
@@ -31,7 +31,7 @@
                             <th class="text-center" width="10"><?= lang("Label.datatable.no") ?></th>
                             <th><?= lang("Label.name") ?></th>
                             <th><?= lang("Label.description") ?></th>
-                            <th><?= lang("Label.must_login") ?></th>
+                            <th><?= lang("Label.mustLogin") ?></th>
                             <th><?= lang("Label.datatable.updatedAt") ?></th>
                             <th width="100"><?= lang("Label.datatable.action") ?></th>
                         </tr>

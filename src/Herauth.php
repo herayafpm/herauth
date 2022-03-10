@@ -176,6 +176,7 @@ class Herauth
         if(isset($args['data'])){
             $this->data = $args['data'];
         }
+
         $permission = $this->permission_model->findPermissionByName($perm);
         if ($permission) {
             if ($this->type === 'api') {
@@ -213,7 +214,7 @@ class Herauth
             $response = $response->setStatusCode(401)->setJSON($data_res);
             $after_request_filter->after($this->request, $response);
             $configHerauth = config("Herauth");
-            echo view($configHerauth->unauthorizedPageView,$data);
+            echo view($configHerauth->unauthorizedPageView,$this->data);
         } else if ($type === 'api') {
             $response = $response->setStatusCode(401)->setJSON($data_res);
             $after_request_filter->after($this->request, $response)->send();
@@ -227,21 +228,22 @@ class Herauth
         if(isset($args['data'])){
             $this->data = $args['data'];
         }
-        $group = $this->group_model->findGroupByName($groupName);
-        if ($group) {
-            if ($this->type === 'api') {
-                $type = 'api';
-                if (isset($this->account)) {
-                    if ($this->account->inGroup($groupName)) {
-                        return true;
-                    }
+        $groups = $groupName;
+        if (!is_array($groupName)) {
+			$groups = [$groupName];
+		}
+        if ($this->type === 'api') {
+            $type = 'api';
+            if (isset($this->account)) {
+                if ($this->account->inGroup($groups)) {
+                    return true;
                 }
-            } else {
-                if ($this->session->has('username')) {
-                    $this->request->jenis_akses = 'web';
-                    if ($this->account->inGroup($groupName)) {
-                        return true;
-                    }
+            }
+        } else {
+            if ($this->session->has('username')) {
+                $this->request->jenis_akses = 'web';
+                if ($this->account->inGroup($groups)) {
+                    return true;
                 }
             }
         }
@@ -254,7 +256,6 @@ class Herauth
             $response = $response->setStatusCode(401)->setJSON($data_res);
             $after_request_filter->after($this->request, $response);
             $configHerauth = config("Herauth");
-            
             echo view($configHerauth->unauthorizedPageView,$this->data);
         } else if ($type === 'api') {
             $response = $response->setStatusCode(401)->setJSON($data_res);

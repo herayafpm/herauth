@@ -13,7 +13,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
 
     public function datatable()
     {
-        herauth_grant("client.post_datatable");
+        $this->herauth_grant("client.post_datatable");
         $data = $this->getDataRequest();
         $like = [
             'name' => $data['search']['value'] ?? ''
@@ -24,7 +24,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
 
     public function add()
     {
-        herauth_grant("client.post_add");
+        $this->herauth_grant("client.post_add");
         $data = $this->getDataRequest();
         $rules = [
             'name' => [
@@ -54,7 +54,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
     }
     public function edit($id = null)
     {
-        herauth_grant("client.post_edit");
+        $this->herauth_grant("client.post_edit");
         $client = $this->model->withDeleted(true)->find($id);
         if (!$client) {
             return $this->response->setStatusCode(404)->setJSON(["status" => false, "message" => lang("Api.ApiRequestNotFound", [lang("Label.client.text")]), "data" => []]);
@@ -93,10 +93,10 @@ class HeraClient extends BaseHerauthAuthResourceApi
     {
         $data = $this->getDataRequest();
         if (isset($data['purge'])) {
-            herauth_grant("client.post_purge");
+            $this->herauth_grant("client.post_purge");
             $client = $this->model->withDeleted(true)->find($id);
         } else {
-            herauth_grant("client.post_delete");
+            $this->herauth_grant("client.post_delete");
             $client = $this->model->find($id);
         }
         if ($client) {
@@ -125,7 +125,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
     }
     public function restore($id = null)
     {
-        herauth_grant("client.post_restore");
+        $this->herauth_grant("client.post_restore");
         $client = $this->model->withDeleted(true)->find($id);
         if ($client) {
             if ($this->model->restore($id)) {
@@ -138,7 +138,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
     }
     public function regenerate_key($id = null)
     {
-        herauth_grant("client.post_regenerate_key");
+        $this->herauth_grant("client.post_regenerate_key");
         $client = $this->model->withDeleted(true)->find($id);
         if ($client) {
             if ($this->model->regenerate_key($id)) {
@@ -152,7 +152,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
 
     public function permissions($id = null)
     {
-        herauth_grant("client.get_permissions");
+        $this->herauth_grant("client.get_permissions");
         $client = $this->model->withDeleted(true)->find($id);
         if ($client) {
             $data = $this->getDataRequest();
@@ -171,7 +171,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
 
     public function save_permissions($id = null)
     {
-        herauth_grant("client.post_save_permissions");
+        $this->herauth_grant("client.post_save_permissions");
         $data = $this->getDataRequest();
         $client = $this->model->withDeleted(true)->find($id);
         if ($client) {
@@ -210,7 +210,7 @@ class HeraClient extends BaseHerauthAuthResourceApi
 
     public function save_whitelists($id = null)
     {
-        herauth_grant("client.post_save_whitelists");
+        $this->herauth_grant("client.post_save_whitelists");
         $data = $this->getDataRequest();
         $client = $this->model->withDeleted(true)->find($id);
         if ($client) {

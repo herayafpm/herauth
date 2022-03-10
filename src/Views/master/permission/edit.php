@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="mustLoginCheck" :class="errorsApi.must_login !== undefined?'is-invalid':''" :checked="must_login" v-model="must_login">
-                        <label class="custom-control-label" for="mustLoginCheck"><?= lang("Label.must_login") ?>?</label>
+                        <label class="custom-control-label" for="mustLoginCheck"><?= lang("Label.mustLogin") ?>?</label>
                         <br />
                         <div class="invalid-feedback">
                             {{errorsApi.must_login}}

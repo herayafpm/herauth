@@ -11,7 +11,7 @@ class HeraClient extends BaseHerauthMasterController
 
     public function index()
     {
-        herauth_grant("client.view_index","page");
+        $this->herauth_grant("client.view_index","page");
         $data = [
             'page_title' => lang("Label.client.text"),
             'url_datatable' => herauth_web_url($this->root_view . "client/datatable"),
@@ -28,7 +28,7 @@ class HeraClient extends BaseHerauthMasterController
 
     public function add()
     {
-        herauth_grant("client.view_add","page");
+        $this->herauth_grant("client.view_add","page");
         $data = [
             'page_title' => lang("Label.add")." ".lang("Label.client.text"),
             'url_add' => herauth_web_url($this->root_view . "client/add"),
@@ -37,7 +37,7 @@ class HeraClient extends BaseHerauthMasterController
     }
     public function edit($id = null)
     {
-        herauth_grant("client.view_edit","page");
+        $this->herauth_grant("client.view_edit","page");
         $client = $this->model->withDeleted(true)->find($id);
         if (!$client) {
             throw new PageNotFoundException();
@@ -53,7 +53,7 @@ class HeraClient extends BaseHerauthMasterController
 
     public function permissions($id = null)
     {
-        herauth_grant("client.view_permissions","page");
+        $this->herauth_grant("client.view_permissions","page");
         $client = $this->model->withDeleted(true)->find($id);
         if (!$client) {
             throw new PageNotFoundException();
@@ -70,7 +70,7 @@ class HeraClient extends BaseHerauthMasterController
     }
     public function whitelists($id = null)
     {
-        herauth_grant("client.view_whitelists","page");
+        $this->herauth_grant("client.view_whitelists","page");
         $client = $this->model->withDeleted(true)->find($id);
         if (!$client) {
             throw new PageNotFoundException();

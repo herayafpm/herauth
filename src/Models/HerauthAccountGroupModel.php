@@ -46,6 +46,6 @@ class HerauthAccountGroupModel extends BaseHerauthModel
 
     public function getGroupsForAccount($account_id)
     {
-        return $this->select("{$this->table}.*,group.name")->join("herauth_group group", "{$this->table}.group_id = group.id", "LEFT")->where(["{$this->table}.account_id" => $account_id])->findAll();
+        return $this->select("{$this->table}.*,group.name")->join("herauth_group group", "{$this->table}.group_id = group.id", "LEFT")->where(["{$this->table}.account_id" => $account_id,'group.deleted_at' => null,"{$this->table}.deleted_at" => null])->findAll();
     }
 }
