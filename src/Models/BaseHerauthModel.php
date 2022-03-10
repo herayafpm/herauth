@@ -63,67 +63,79 @@ class BaseHerauthModel extends Model
 
 	protected function logDBBeforeInsert(array $data)
 	{
-		$this->logDBSaveTransaction(null, [], $data, 'insert');
+		if(config('Herauth')->useDatabaseLog){
+			$this->logDBSaveTransaction(null, [], $data, 'insert');
+		}
 		return $data;
 	}
 	protected function logDBBeforeUpdate(array $data)
 	{
-		$jenis = $this->log_jenis ?? 'update';
-		if($this->log_jenis === 'hit_limit'){
-			return $data;
-		}
-		$id = $data['id'][0];
-		$data_before = $this->withDeleted(true)->find($id);
-		if ($data_before) {
-			if(is_array($data_before)){
-				$data_before = $data_before[0]->toArray() ?? [];
-			}else{
-				$data_before = $data_before->toArray() ?? [];
+		if(config('Herauth')->useDatabaseLog){
+			$jenis = $this->log_jenis ?? 'update';
+			if($this->log_jenis === 'hit_limit'){
+				return $data;
 			}
+			$id = $data['id'][0];
+			$data_before = $this->withDeleted(true)->find($id);
+			if ($data_before) {
+				if(is_array($data_before)){
+					$data_before = $data_before[0]->toArray() ?? [];
+				}else{
+					$data_before = $data_before->toArray() ?? [];
+				}
+			}
+			$this->logDBSaveTransaction($id, $data_before, $data['data'], $jenis);
 		}
-		$this->logDBSaveTransaction($id, $data_before, $data['data'], $jenis);
 		return $data;
 	}
 	protected function logDBBeforeDelete(array $data)
 	{
-		$id = $data['id'][0];
-		$data_before = $this->withDeleted(true)->find($id);
-		if ($data_before) {
-			$data_before = $data_before->toArray() ?? [];
+		if(config('Herauth')->useDatabaseLog){
+			$id = $data['id'][0];
+			$data_before = $this->withDeleted(true)->find($id);
+			if ($data_before) {
+				$data_before = $data_before->toArray() ?? [];
+			}
+			$jenis = 'delete';
+			if ($data['purge']) {
+				$jenis = 'delete_purge';
+			}
+			$this->logDBSaveTransaction($id, $data_before, [], $jenis);
 		}
-		$jenis = 'delete';
-		if ($data['purge']) {
-			$jenis = 'delete_purge';
-		}
-		$this->logDBSaveTransaction($id, $data_before, [], $jenis);
 		return $data;
 	}
 	protected function logDBAfterInsert(array $data)
 	{
-		if (!(bool)$data['result']) {
-			$this->log_message = json_encode($this->db->error());
+		if(config('Herauth')->useDatabaseLog){
+			if (!(bool)$data['result']) {
+				$this->log_message = json_encode($this->db->error());
+			}
+			$id = $data['id'];
+			$this->logDBSaveTransaction($id, [], [], 'insert', $data['result']);
 		}
-		$id = $data['id'];
-		$this->logDBSaveTransaction($id, [], [], 'insert', $data['result']);
 		return $data['result'];
 	}
 	protected function logDBAfterUpdate(array $data)
 	{
-		if (!(bool)$data['result']) {
-			$this->log_message = json_encode($this->db->error());
+		if(config('Herauth')->useDatabaseLog){
+			if (!(bool)$data['result']) {
+				$this->log_message = json_encode($this->db->error());
+			}
+			if($this->log_jenis === 'hit_limit'){
+				return $data['result'];
+			}
+			$this->logDBSaveTransaction(null, [], [], 'update', $data['result']);
 		}
-		if($this->log_jenis === 'hit_limit'){
-			return $data['result'];
-		}
-		$this->logDBSaveTransaction(null, [], [], 'update', $data['result']);
 		return $data['result'];
 	}
 	protected function logDBAfterDelete(array $data)
 	{
-		if (!(bool)$data['result']) {
-			$this->log_message = json_encode($this->db->error());
+		if(config('Herauth')->useDatabaseLog){
+			if (!(bool)$data['result']) {
+				$this->log_message = json_encode($this->db->error());
+			}
+			$this->logDBSaveTransaction(null, [], [], 'delete', $data['result']);
 		}
-		$this->logDBSaveTransaction(null, [], [], 'delete', $data['result']);
 		return $data['result'];
 	}
 

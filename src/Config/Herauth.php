@@ -19,6 +19,7 @@ class Herauth extends BaseConfig
     public $herauthLangJsUrl = '';
     public $mainLangJsUrl = '';
     public $unauthorizedPageView = 'errors/unauthorized';
+    public $useDatabaseLog = false;
     public $userEntityClass = HerauthUserEntity::class;
 
     public function __construct()
