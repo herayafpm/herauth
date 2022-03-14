@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= $page_title ?? "Login" ?> | <?= $__app_name ?></title>
+  <title><?= $page_title ?? "Login" ?> | <?= $_app_name ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,7 +21,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="<?= herauth_base_url() ?>" class="h1"><?= $__app_name ?></a>
+        <a href="<?= herauth_base_url() ?>" class="h1"><?= $_app_name ?></a>
       </div>
       <div class="card-body">
         <p class="login-box-msg"><?=lang("Label.login")?> <?=lang("Label.admin")?></p>

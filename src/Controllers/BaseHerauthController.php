@@ -55,13 +55,13 @@ class BaseHerauthController extends Controller
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
-        $this->data['__app_name'] = 'Herauth';
+        $this->data['_app_name'] = env('app.appName') ?? 'Herauth';
         $this->data['_main_path'] = $this->root_view;
-        $this->data['__locale'] = $request->getLocale() ?? 'id';
-        $this->data['__locale_list'] = config('App')->supportedLocales ?? ['id','en'];
+        $this->data['_locale'] = $request->getLocale() ?? 'id';
+        $this->data['_locale_list'] = config('App')->supportedLocales ?? ['id','en'];
         $this->session = session();
         $url = current_url();
-        $this->data['url'] = $url;
+        $this->data['_url'] = $url;
         $this->_account = service('herauth')->getAccount();
         $this->data['_account'] = $this->_account;
         $this->data['_session'] = $this->session;

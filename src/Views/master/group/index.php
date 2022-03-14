@@ -79,8 +79,9 @@
     }
 
 
-    async function hapusData(id) {
-        await axiosValid.post("<?= $url_delete ?>" + id).then((res) => {
+    async function deleteData(id) {
+        var url = decodeURIComponent("<?= $url_delete ?>").format(id);
+        await axiosValid.post(url).then((res) => {
             if (res.status !== 200) {
                 Swal.fire({
                     title: res.data.message,
@@ -96,7 +97,8 @@
         })
     }
     async function purgeData(id) {
-        await axiosValid.post("<?= $url_delete ?>" + id + "?purge=1").then((res) => {
+        var url = decodeURIComponent("<?= $url_delete ?>").format(id)+"?purge=1";
+        await axiosValid.post(url).then((res) => {
             if (res.status !== 200) {
                 Swal.fire({
                     title: res.data.message,
@@ -112,7 +114,8 @@
         })
     }
     async function restoreData(id) {
-        await axiosValid.post("<?= $url_restore ?>" + id).then((res) => {
+        var url = decodeURIComponent("<?= $url_restore ?>").format(id);
+        await axiosValid.post(url).then((res) => {
             if (res.status !== 200) {
                 Swal.fire({
                     title: res.data.message,
@@ -207,25 +210,28 @@
                     "data": "id",
                     "render": function(dt, type, row, meta) { // Tampilkan kolom aksi
                         var html = '';
+                        var url_accounts = decodeURIComponent("<?=$url_accounts?>").format(row.id);
+                        var url_permissions = decodeURIComponent("<?=$url_permissions?>").format(row.id);
+                        var url_edit = decodeURIComponent("<?=$url_edit?>").format(row.id);
                         html += `
-                            <a role="button" class="btn btn-sm btn-info" href="<?= $url_accounts ?>${row.id}">
+                            <a role="button" class="btn btn-sm btn-info" href="${url_accounts}">
                                 <i class="fas fa-fw fa-users"></i>
                             </a>
                             `
                         html += `
-                            <a role="button" class="btn btn-sm btn-info" href="<?= $url_permissions ?>${row.id}">
+                            <a role="button" class="btn btn-sm btn-info" href="${url_permissions}">
                                 <i class="fas fa-fw fa-lock"></i>
                             </a>
                             `
                         if (row.name !== 'superadmin') {
                             html += `
-                            <a role="button" class="btn btn-sm btn-primary" href="<?= $url_edit ?>${row.id}">
+                            <a role="button" class="btn btn-sm btn-primary" href="${url_edit}">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
                             `
                             if (row.deleted_at === null) {
                                 html += `
-                            <a role="button" class="btn btn-sm btn-danger hapusData" data-id="${row.id}">
+                            <a role="button" class="btn btn-sm btn-danger deleteData" data-id="${row.id}">
                                 <i class="fas fa-fw fa-trash"></i>
                             </a>
                             `
@@ -253,7 +259,7 @@
                 cell.innerHTML = i + 1;
             });
         }).draw();
-        $("#tableMaster").on('click', '.hapusData', function() {
+        $("#tableMaster").on('click', '.deleteData', function() {
             var id = $(this).data('id')
             Swal.fire({
                 title: herlangjs('Label.confirm') + " "+herlangjs("Label.delete")+" "+herlangjs('Label.group'),
@@ -266,7 +272,7 @@
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    hapusData(id)
+                    deleteData(id)
                 }
             })
         })

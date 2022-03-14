@@ -16,10 +16,10 @@ class HeraAccount extends BaseHerauthMasterController
             'page_title' => lang("Label.account"),
             'url_datatable' => herauth_web_url($this->root_view . "account/datatable"),
             'url_add' => herauth_base_locale_url($this->root_view . "account/add"),
-            'url_edit' => herauth_base_locale_url($this->root_view . "account/edit/"),
-            'url_delete' => herauth_web_url($this->root_view . "account/delete/"),
-            'url_restore' => herauth_web_url($this->root_view . "account/restore/"),
-            'url_group' => herauth_base_locale_url($this->root_view . "account/group/"),
+            'url_edit' => herauth_base_locale_url($this->root_view . "account/{0}/edit"),
+            'url_delete' => herauth_web_url($this->root_view . "account/{0}/delete"),
+            'url_restore' => herauth_web_url($this->root_view . "account/{0}/restore"),
+            'url_group' => herauth_base_locale_url($this->root_view . "account/{0}/group"),
         ];
         return $this->view("account/index", $data);
     }
@@ -43,7 +43,7 @@ class HeraAccount extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.edit")." ".lang("Label.account")." " . $account->profil->name,
             'account' => $account,
-            'url_edit' => herauth_web_url($this->root_view . "account/edit/".$id),
+            'url_edit' => herauth_web_url($this->root_view . "account/{$id}/edit"),
         ];
         return $this->view("account/edit", $data);
     }
@@ -58,9 +58,9 @@ class HeraAccount extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.group")." ".lang("Label.account")." " . $account->profil->name,
             'account' => $account,
-            'url_save' => herauth_web_url($this->root_view . "account/save_group/".$id),
+            'url_save' => herauth_web_url($this->root_view . "account/{$id}/save_group"),
             'url_groups' => herauth_web_url($this->root_view . "group"),
-            'url_account_groups' => herauth_web_url($this->root_view . "account/groups/".$id),
+            'url_account_groups' => herauth_web_url($this->root_view . "account/{$id}/groups"),
         ];
         return $this->view("account/group", $data);
     }

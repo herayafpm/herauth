@@ -15,11 +15,11 @@ class HeraGroup extends BaseHerauthMasterController
             'page_title' => lang("Label.group"),
             'url_datatable' => herauth_web_url($this->root_view . "group/datatable"),
             'url_add' => herauth_base_locale_url($this->root_view . "group/add"),
-            'url_edit' => herauth_base_locale_url($this->root_view . "group/edit/"),
-            'url_delete' => herauth_web_url($this->root_view . "group/delete/"),
-            'url_restore' => herauth_web_url($this->root_view . "group/restore/"),
-            'url_accounts' => herauth_base_locale_url($this->root_view . "group/accounts/"),
-            'url_permissions' => herauth_base_locale_url($this->root_view . "group/permissions/"),
+            'url_edit' => herauth_base_locale_url($this->root_view . "group/{0}/edit"),
+            'url_delete' => herauth_web_url($this->root_view . "group/{0}/delete"),
+            'url_restore' => herauth_web_url($this->root_view . "group/{0}/restore"),
+            'url_accounts' => herauth_base_locale_url($this->root_view . "group/{0}/accounts"),
+            'url_permissions' => herauth_base_locale_url($this->root_view . "group/{0}/permissions"),
         ];
         return $this->view("group/index", $data);
     }
@@ -44,7 +44,7 @@ class HeraGroup extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.edit")." ".lang("Label.group")." " . $group->name,
             'group' => $group,
-            'url_edit' => herauth_web_url($this->root_view . "group/edit/".$id),
+            'url_edit' => herauth_web_url($this->root_view . "group/{$id}/edit"),
         ];
         return $this->view("group/edit", $data);
     }
@@ -61,9 +61,9 @@ class HeraGroup extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.account")." ".lang("Label.group")." " . $group->name,
             'group' => $group,
-            'url_add_account_group' => herauth_web_url($this->root_view . "group/add_account_group/".$id),
-            'url_delete_account_group' => herauth_web_url($this->root_view . "group/delete_account_group/".$id),
-            'url_account_groups' => herauth_web_url($this->root_view . "group/accounts/".$id),
+            'url_add_account_group' => herauth_web_url($this->root_view . "group/{$id}/add_account_group"),
+            'url_delete_account_group' => herauth_web_url($this->root_view . "group/{$id}/delete_account_group"),
+            'url_account_groups' => herauth_web_url($this->root_view . "group/{$id}/accounts"),
         ];
         return $this->view("group/accounts", $data);
     }
@@ -79,9 +79,9 @@ class HeraGroup extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.group")." ".lang("Label.permission")." " . $group->name,
             'group' => $group,
-            'url_save' => herauth_web_url($this->root_view . "group/save_permissions/".$id),
+            'url_save' => herauth_web_url($this->root_view . "group/{$id}/save_permissions"),
             'url_permissions' => herauth_web_url($this->root_view . "permission"),
-            'url_group_permissions' => herauth_web_url($this->root_view . "group/permissions/".$id),
+            'url_group_permissions' => herauth_web_url($this->root_view . "group/{$id}/permissions"),
         ];
         return $this->view("group/permission", $data);
     }

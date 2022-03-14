@@ -25,28 +25,36 @@ $routes->group('herauth',function($routes){
             $routes->group('master', ['filter' => 'auth_filter'], function ($routes) {
                 $routes->group('group', function ($routes) {
                     $routes->get('/','HeraGroup::index');
-                    $routes->get('accounts/(:segment)','HeraGroup::accounts/$1');
-                    $routes->get('permissions/(:segment)','HeraGroup::permissions/$1');
-                    $routes->get('add','HeraGroup::add');
-                    $routes->get('edit/(:segment)','HeraGroup::edit/$1');
+                    $routes->group('(:segment)', function ($routes) {
+                        $routes->get('accounts','HeraGroup::accounts/$1');
+                        $routes->get('permissions','HeraGroup::permissions/$1');
+                        $routes->get('add','HeraGroup::add');
+                        $routes->get('edit','HeraGroup::edit/$1');
+                    });
                 });
                 $routes->group('permission', function ($routes) {
                     $routes->get('/','HeraPermission::index');
                     $routes->get('add','HeraPermission::add');
-                    $routes->get('edit/(:segment)','HeraPermission::edit/$1');
+                    $routes->group('(:segment)', function ($routes) {
+                        $routes->get('edit','HeraPermission::edit/$1');
+                    });
                 });
                 $routes->group('client', function ($routes) {
                     $routes->get('/','HeraClient::index');
                     $routes->get('add','HeraClient::add');
-                    $routes->get('edit/(:segment)','HeraClient::edit/$1');
-                    $routes->get('permissions/(:segment)','HeraClient::permissions/$1');
-                    $routes->get('whitelists/(:segment)','HeraClient::whitelists/$1');
+                    $routes->group('(:segment)', function ($routes) {
+                        $routes->get('edit','HeraClient::edit/$1');
+                        $routes->get('permissions','HeraClient::permissions/$1');
+                        $routes->get('whitelists','HeraClient::whitelists/$1');
+                    });
                 });
                 $routes->group('account', function ($routes) {
                     $routes->get('/','HeraAccount::index');
-                    $routes->get('group/(:segment)','HeraAccount::group/$1');
                     $routes->get('add','HeraAccount::add');
-                    $routes->get('edit/(:segment)','HeraAccount::edit/$1');
+                    $routes->group('(:segment)', function ($routes) {
+                        $routes->get('group','HeraAccount::group/$1');
+                        $routes->get('edit','HeraAccount::edit/$1');
+                    });
                 });
             });
             $routes->setDefaultNamespace('Raydragneel\Herauth\Controllers');

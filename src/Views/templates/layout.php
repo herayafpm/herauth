@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="<?= $__locale ?>">
+<html lang="<?= $_locale ?>">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $page_title ?? 'Dashboard' ?> | <?= $__app_name ?></title>
+    <title><?= $page_title ?? 'Dashboard' ?> | <?= $_app_name ?></title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,7 +26,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="<?= herauth_asset_url('img/favicon.ico') ?>" alt="<?= $__app_name ?>Logo" height="60" width="60">
+            <img class="animation__wobble" src="<?= herauth_asset_url('img/favicon.ico') ?>" alt="<?= $_app_name ?>Logo" height="60" width="60">
         </div>
 
         <!-- Navbar -->
@@ -40,12 +40,12 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link d-flex align-items-center" data-toggle="dropdown" href="#">
-                        <?php $locale_img = herauth_locale_img($__locale);?>
+                        <?php $locale_img = herauth_locale_img($_locale);?>
                         <img src="<?= herauth_asset_url('vendor/adminlte/plugins/flag-icon-css/flags/1x1/'. $locale_img . ".svg") ?>">
                         <i class="fas fa-angle-down ml-1"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                        <?php foreach ($__locale_list as $locale) :
+                        <?php foreach ($_locale_list as $locale) :
                             $locale_img = herauth_locale_img($locale);
                         ?>
                             <a href="<?= herauth_set_locale($locale) ?>" class="dropdown-item mb-1">
@@ -77,8 +77,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="<?= herauth_base_locale_url('') ?>" class="brand-link">
-                <img src="<?= herauth_asset_url('img/favicon.ico') ?>" alt="<?= $__app_name ?> Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light"><?= $__app_name ?></span>
+                <img src="<?= herauth_asset_url('img/favicon.ico') ?>" alt="<?= $_app_name ?> Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light"><?= $_app_name ?></span>
             </a>
 
             <!-- Sidebar -->
@@ -133,7 +133,7 @@
                             <a href="#" class="nav-link menuMasterLink <?= in_array(str_replace('/master/', '', $url), array_column($list_master_data, 'this_url')) ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    <?= lang("Label.datatable.data") ?>
+                                    <?= lang("Label.masterData") ?>
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -195,7 +195,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; <?= date("Y") ?> <a href="<?= herauth_base_url("admin") ?>"><?= $__app_name ?></a>.</strong>
+            <strong>Copyright &copy; <?= date("Y") ?> <a href="<?= herauth_base_url("admin") ?>"><?= $_app_name ?></a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0
@@ -225,9 +225,9 @@
     <script src="<?= herauth_asset_url('vendor/vuejs') ?>/vue.js"></script>
     <script src="<?= herauth_asset_url('lang') ?>/lang.js"></script>
     <script>
-        herlangjsSetLocaleSupport(<?= json_encode($__locale_list ?? []) ?>);
+        herlangjsSetLocaleSupport(<?= json_encode($_locale_list ?? []) ?>);
         herlangjsSetPathLocale("<?= config("Herauth")->herauthLangJsUrl ?? '' ?>");
-        herlangjsSetLocale("<?= $__locale ?? 'id' ?>");
+        herlangjsSetLocale("<?= $_locale ?? 'id' ?>");
     </script>
     <script>
         const axiosValid = axios.create({
@@ -245,7 +245,7 @@
         var filtersVue = {}
 
         function toLocaleDate(date, format = 'LL') {
-            moment.locale("<?= $__locale ?? 'id' ?>")
+            moment.locale("<?= $_locale ?? 'id' ?>")
             return moment(date).format(format)
         }
 

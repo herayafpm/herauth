@@ -16,12 +16,12 @@ class HeraClient extends BaseHerauthMasterController
             'page_title' => lang("Label.client.text"),
             'url_datatable' => herauth_web_url($this->root_view . "client/datatable"),
             'url_add' => herauth_base_locale_url($this->root_view . "client/add"),
-            'url_edit' => herauth_base_locale_url($this->root_view . "client/edit/"),
-            'url_delete' => herauth_web_url($this->root_view . "client/delete/"),
-            'url_restore' => herauth_web_url($this->root_view . "client/restore/"),
-            'url_regenerate_key' => herauth_web_url($this->root_view . "client/regenerate_key/"),
-            'url_permissions' => herauth_base_locale_url($this->root_view . "client/permissions/"),
-            'url_whitelists' => herauth_base_locale_url($this->root_view . "client/whitelists/"),
+            'url_edit' => herauth_base_locale_url($this->root_view . "client/{0}/edit"),
+            'url_delete' => herauth_web_url($this->root_view . "client/{0}/delete"),
+            'url_restore' => herauth_web_url($this->root_view . "client/{0}/restore"),
+            'url_regenerate_key' => herauth_web_url($this->root_view . "client/{0}/regenerate_key"),
+            'url_permissions' => herauth_base_locale_url($this->root_view . "client/{0}permissions"),
+            'url_whitelists' => herauth_base_locale_url($this->root_view . "client/{0}/whitelists"),
         ];
         return $this->view("client/index", $data);
     }
@@ -46,7 +46,7 @@ class HeraClient extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.edit")." ".lang("Label.client.text")." " . $client->name,
             'client' => $client,
-            'url_edit' => herauth_web_url($this->root_view . "client/edit/".$id),
+            'url_edit' => herauth_web_url($this->root_view . "client/{$id}/edit"),
         ];
         return $this->view("client/edit", $data);
     }
@@ -62,9 +62,9 @@ class HeraClient extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.client.text")." ".lang("Label.permission")." " . $client->name,
             'client' => $client,
-            'url_save' => herauth_web_url($this->root_view . "client/save_permissions/".$id),
+            'url_save' => herauth_web_url($this->root_view . "client/{$id}/save_permissions"),
             'url_permissions' => herauth_web_url($this->root_view . "permission"),
-            'url_client_permissions' => herauth_web_url($this->root_view . "client/permissions/".$id),
+            'url_client_permissions' => herauth_web_url($this->root_view . "client/{$id}/permissions"),
         ];
         return $this->view("client/permission", $data);
     }
@@ -79,7 +79,7 @@ class HeraClient extends BaseHerauthMasterController
         $data = [
             'page_title' => lang("Label.client.text")." ".lang("Label.whitelist")." " . $client->name,
             'client' => $client,
-            'url_save' => herauth_web_url($this->root_view . "client/save_whitelists/".$id),
+            'url_save' => herauth_web_url($this->root_view . "client/{$id}/save_whitelists"),
         ];
         return $this->view("client/whitelist", $data);
     }

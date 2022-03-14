@@ -61,6 +61,6 @@ class HerauthFilters extends BaseConfig
      */
     public $filters = [
         'api_filter' => ['before' => ['herauth/api','herauth/web','herauth/api/*','herauth/web/*']],
-        'after_request_filter' => ['after' => ['herauth/api','herauth/web','herauth/api/*','herauth/web/*']]
+        'after_request_filter' => ['after' => ['herauth/api','herauth/web','herauth/api/*','herauth/web/*','web/*','api/*']]
     ];
 }

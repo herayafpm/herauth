@@ -27,7 +27,7 @@ class AuthFilter implements FilterInterface
                 }
             }else{
                 if($request->uri->getPath() === $config->redirectLogin){
-                    return redirect()->to(base_url($config->redirectMain));
+                    return redirect()->to(base_locale_url($config->redirectMain));
                 }
             }
         } catch (\DomainException $th) {
@@ -41,7 +41,7 @@ class AuthFilter implements FilterInterface
                 }
             }else{
                 if($request->uri->getPath() !== $config->redirectLogin){
-                    return redirect()->to(base_url($config->redirectLogin));
+                    return redirect()->to(base_locale_url($config->redirectLogin));
                 }
             }
         }
