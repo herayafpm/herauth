@@ -20,7 +20,7 @@ class HeraClient extends BaseHerauthMasterController
             'url_delete' => herauth_web_url($this->root_view . "client/{0}/delete"),
             'url_restore' => herauth_web_url($this->root_view . "client/{0}/restore"),
             'url_regenerate_key' => herauth_web_url($this->root_view . "client/{0}/regenerate_key"),
-            'url_permissions' => herauth_base_locale_url($this->root_view . "client/{0}permissions"),
+            'url_permissions' => herauth_base_locale_url($this->root_view . "client/{0}/permissions"),
             'url_whitelists' => herauth_base_locale_url($this->root_view . "client/{0}/whitelists"),
         ];
         return $this->view("client/index", $data);

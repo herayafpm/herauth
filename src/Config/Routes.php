@@ -25,10 +25,10 @@ $routes->group('herauth',function($routes){
             $routes->group('master', ['filter' => 'auth_filter'], function ($routes) {
                 $routes->group('group', function ($routes) {
                     $routes->get('/','HeraGroup::index');
+                    $routes->get('add','HeraGroup::add');
                     $routes->group('(:segment)', function ($routes) {
                         $routes->get('accounts','HeraGroup::accounts/$1');
                         $routes->get('permissions','HeraGroup::permissions/$1');
-                        $routes->get('add','HeraGroup::add');
                         $routes->get('edit','HeraGroup::edit/$1');
                     });
                 });

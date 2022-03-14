@@ -112,7 +112,7 @@
         })
     }
     async function restoreData(id) {
-        var url = decodeURIComponent("<?= $url_retore ?>").format(id);
+        var url = decodeURIComponent("<?= $url_restore ?>").format(id);
         await axiosValid.post(url).then((res) => {
             if (res.status !== 200) {
                 Swal.fire({
